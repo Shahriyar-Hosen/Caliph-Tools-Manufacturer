@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer03 = () => {
   return (
-    <footer className="text-center lg:text-left bg-gray-100 text-gray-600">
+    <footer className="text-center lg:text-left bg-[#f9f1eb] text-gray-600">
       <div className="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
         <div className="mr-12 hidden lg:block">
           <span>Get connected with us on social networks:</span>
@@ -280,7 +280,7 @@ const Footer03 = () => {
           </div>
         </div>
       </div>
-      <div className="text-center p-6 bg-gray-200">
+      <div className="text-center p-6 bg-[#f7e7dd]">
         <span>© 2021 Copyright:</span>
         <Link
           className="text-gray-600 font-semibold"

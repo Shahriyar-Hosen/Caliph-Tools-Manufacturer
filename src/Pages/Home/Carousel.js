@@ -1,26 +1,13 @@
 import React from "react";
 
 const Carousel = () => {
-  /* 
-    
-
-
-
-
-
-
-
-
-
-
-    */
   return (
     <div
       id="carouselExampleCaptions"
       class="carousel slide relative"
       data-bs-ride="carousel"
     >
-      <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+      <div class="carousel-indicators absolute right-0 bottom-0 left-0 md:flex justify-center p-0 mb-4 hidden">
         <button
           type="button"
           data-bs-target="#carouselExampleCaptions"
@@ -106,7 +93,7 @@ const Carousel = () => {
 
         <div class="carousel-item relative float-left w-full">
           <img
-            src="https://i.ibb.co/2MtZKTJ/screwing-self-tapping-screw-into-metal-fastening-hole-wood-strip-using-screwdriver-work-carpenter.jpg.jpg"
+            src="https://i.ibb.co/0D3QK8s/37668.jpg"
             class="block w-full"
             style={{ maxHeight: "700px" }}
             alt="..."
