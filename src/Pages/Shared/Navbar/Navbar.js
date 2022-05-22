@@ -18,9 +18,9 @@ const Navbar = () => {
   const profile = (
     <>
       <li>
-        <Link to="/profile" class="justify-between">
+        <Link to="/profile" className="justify-between">
           Profile
-          <span class="badge">New</span>
+          <span className="badge">New</span>
         </Link>
       </li>
       <li>
@@ -32,54 +32,54 @@ const Navbar = () => {
     </>
   );
   return (
-    <div class="navbar bg-[rgb(255 249 246)]">
-      <div class="navbar-start">
-        <div class="dropdown">
-          <label tabindex="0" class="btn btn-ghost lg:hidden">
+    <div className="navbar bg-[rgb(255 249 246)]">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <label tabIndex="0" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
               />
             </svg>
           </label>
 
           <ul
-            tabindex="0"
-            class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            tabIndex="0"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {menu}
           </ul>
         </div>
 
-        <Link to="/" class="btn btn-ghost font-mono text-xl text-primary font-bold uppercase">
+        <Link to="/" className="btn btn-ghost font-mono text-xl text-primary font-bold uppercase">
           Caliph Tools
         </Link>
       </div>
 
-      <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal p-0">{menu}</ul>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal p-0">{menu}</ul>
       </div>
 
-      <div class="navbar-end">
-        <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full">
+      <div className="navbar-end">
+        <div className="dropdown dropdown-end">
+          <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
               <img src="https://api.lorem.space/image/face?hash=33791" alt="" />
             </div>
           </label>
 
           <ul
-            tabindex="0"
-            class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+            tabIndex="0"
+            className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
           >
             {profile}
           </ul>
