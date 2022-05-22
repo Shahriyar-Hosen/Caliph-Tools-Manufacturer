@@ -1,6 +1,7 @@
 import React from "react";
 
 const Review = () => {
+  // const customerReview = defaultChecked;
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <div className="card-body">
@@ -14,55 +15,53 @@ const Review = () => {
               <input
                 type="radio"
                 name="rating-10"
-                className="bg-green-500 mask mask-star-2 mask-half-1"
-                
+                className="bg-red-400 mask mask-star-2 mask-half-1"
               />
               <input
                 type="radio"
                 name="rating-10"
-                className="bg-green-500 mask mask-star-2 mask-half-2"
-                
+                className="bg-red-400 mask mask-star-2 mask-half-2"
               />
               <input
                 type="radio"
                 name="rating-10"
-                className="bg-green-500 mask mask-star-2 mask-half-1"
+                className="bg-orange-400 mask mask-star-2 mask-half-1"
+              />
+              <input
+                type="radio"
+                name="rating-10"
+                className="bg-orange-400 mask mask-star-2 mask-half-2"
+              />
+              <input
+                type="radio"
+                name="rating-10"
+                className="bg-yellow-400 mask mask-star-2 mask-half-1"
+              />
+              <input
+                type="radio"
+                name="rating-10"
+                className="bg-yellow-400 mask mask-star-2 mask-half-2"
+              />
+              <input
+                type="radio"
+                name="rating-10"
+                className="bg-lime-400 mask mask-star-2 mask-half-1"
+              />
+              <input
+                type="radio"
+                name="rating-10"
+                className="bg-lime-400 mask mask-star-2 mask-half-2"
+              />
+              <input
+                type="radio"
+                name="rating-10"
+                className="bg-green-400 mask mask-star-2 mask-half-1"
+              />
+              <input
+                type="radio"
+                name="rating-10"
+                className="bg-green-400 mask mask-star-2 mask-half-2"
                 defaultChecked
-              />
-              <input
-                type="radio"
-                name="rating-10"
-                className="bg-green-500 mask mask-star-2 mask-half-2"
-              />
-              <input
-                type="radio"
-                name="rating-10"
-                className="bg-green-500 mask mask-star-2 mask-half-1"
-              />
-              <input
-                type="radio"
-                name="rating-10"
-                className="bg-green-500 mask mask-star-2 mask-half-2"
-              />
-              <input
-                type="radio"
-                name="rating-10"
-                className="bg-green-500 mask mask-star-2 mask-half-1"
-              />
-              <input
-                type="radio"
-                name="rating-10"
-                className="bg-green-500 mask mask-star-2 mask-half-2"
-              />
-              <input
-                type="radio"
-                name="rating-10"
-                className="bg-green-500 mask mask-star-2 mask-half-1"
-              />
-              <input
-                type="radio"
-                name="rating-10"
-                className="bg-green-500 mask mask-star-2 mask-half-2"
               />
             </div>
             <h1 className="ml-3">date</h1>
