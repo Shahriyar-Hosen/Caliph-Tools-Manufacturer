@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Top Tech 1700W Pressure Washer",
+    "img": "https://i.ibb.co/8r5nRQx/546771150.jpg",
+    "description": "The Top Tech 1700W Pressure washer is ideal for a range of jobs, from cleaning your vehicle to patios, decking and BBQs. With a powerful 1700W air-cooled motor producing up to 110 bar of pressure, and a built-in stop-start system, the unit also comes with an in-line detergent bottle to help you apply your chosen cleaning solution directly to where you use the pressure washer.",
+    "minOrder": 1000,
+    "quantity": 75000,
+    "price": 179
+  },
+  {
+    "name": "Swimming Pool Filter Pump - 330 Gallons ",
+    "img": "https://i.ibb.co/KLGL7B1/550995230.jpg",
+    "description": "Suitable for 6'/8'/10' Easy Set and 10' Metal Frame Pools, also compatible with other brands of pools if they share the same hose dimensions.",
+    "minOrder": 1000,
+    "quantity": 60000,
+    "price": 144
+  },
+  {
+    "name": "SIP 12” Floor-Standing Workshop Fan",
+    "img": "https://i.ibb.co/HGzM8fm/SIP5630.jpg",
+    "description": "Powerful and robust, perfect for ventilating offi ces, garages and more. Keeps air circulation performing at an optimum level, providing a fresher working environment, and aids the ventilation of odours, smoke, and fumes, as well as being suitable for drying purposes.",
+    "minOrder": 2500,
+    "quantity": 95000,
+    "price": 44
+  },
+  {
+    "name": "Drive Socket and Bit Set- 108 Piece 1/4'' & 1/2''",
+    "img": "https://i.ibb.co/s9TZhs5/529772601.jpg",
+    "description": "Designed for a wide range of mechanical jobs and basic vehicle maintenance, the Top Tech 108 Piece 1/4'' & 1/2'' Drive Socket Set includes both standard and deep sockets along with a range of bits including hex and torx. The sockets are made from chromium-vanadium steel, are supplied in a handy carry case and come with a 12-month warranty.",
+    "minOrder": 1000,
+    "quantity": 85000,
+    "price": 192
+  },
+  {
+    "name": "Live Centers With Interchangeable Points",
+    "img": "https://i.ibb.co/d2CqqQN/LIVE-CENTERS-WITH-SEVEN-Interchangeable-768x768.jpg",
+    "description": "Made of hardened and ground high carbon steel. Comes complete with wide selection of seven interchangeable points and drift .Versatile for wide range of applications .Consists of three anti-friction steel bearings. Run out within .0002” (.005 mm)",
+    "minOrder": 5000,
+    "quantity": 175000,
+    "price": 17
+  },
+  {
+    "name": "150pc Maintenance Tool Kit with 1-Drawer Chest",
+    "img": "https://i.ibb.co/Q8RHWSD/529770271.jpg",
+    "description": "Ideal for your home garage, the Top Tech 150pc Maintenance Tool Kit comes with 150 of the most common tools required to complete some basic mechanical jobs on your vehicle. The included 1-drawer tool chest keeps your kit together for easy storage and portability, and the kit has a 12-month warranty.",
+    "minOrder": 1000,
+    "quantity": 60000,
+    "price": 152
+  }
+]
