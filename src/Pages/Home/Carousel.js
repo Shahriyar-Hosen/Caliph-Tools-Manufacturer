@@ -52,7 +52,7 @@ const Carousel = () => {
           <div class="carousel-caption hidden md:block absolute text-center">
             <div class="card max-w-4xl block mx-auto glass lg:card-side bg-base-200 bg-opacity-0 shadow-xl">
               <div class="card-body">
-                <h2 class="card-title text-left font-bold  text-primary">
+                <h2 class="card-title text-left font-bold  text-secondary">
                   CUTTING TOOLS{" "}
                 </h2>
                 <p class=" text-left text-xl text-black">
@@ -60,7 +60,7 @@ const Carousel = () => {
                   tools is important
                 </p>
                 <div class="card-actions justify-end">
-                  <button class="btn btn-primary">Purchase</button>
+                  <button class="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase</button>
                 </div>
               </div>
             </div>
@@ -76,7 +76,7 @@ const Carousel = () => {
           <div class="carousel-caption hidden md:block absolute text-center">
             <div class="card max-w-4xl block mx-auto glass lg:card-side bg-base-200 bg-opacity-0 shadow-xl">
               <div class="card-body">
-                <h2 class="card-title text-left font-bold  text-primary">
+                <h2 class="card-title text-left font-bold  text-secondary">
                   HAND TOOLS{" "}
                 </h2>
                 <p class=" text-left text-xl text-black">
@@ -84,7 +84,7 @@ const Carousel = () => {
                   exporter
                 </p>
                 <div class="card-actions justify-end">
-                  <button class="btn btn-primary">Purchase</button>
+                  <button class="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase</button>
                 </div>
               </div>
             </div>
@@ -101,14 +101,14 @@ const Carousel = () => {
           <div class="carousel-caption hidden md:block absolute text-center">
             <div class="card max-w-4xl block mx-auto glass lg:card-side bg-base-200 bg-opacity-0 shadow-xl">
               <div class="card-body">
-                <h2 class="card-title text-left font-bold  text-primary">
+                <h2 class="card-title text-left font-bold  text-secondary">
                   INDUSTRIAL TOOLS{" "}
                 </h2>
                 <p class=" text-left text-xl text-black">
                   Serving the market from last 40 years.
                 </p>
                 <div class="card-actions justify-end">
-                  <button class="btn btn-primary">Purchase</button>
+                  <button class="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase</button>
                 </div>
               </div>
             </div>
@@ -124,7 +124,7 @@ const Carousel = () => {
           <div class="carousel-caption hidden md:block absolute text-center">
             <div class="card max-w-4xl block mx-auto glass lg:card-side bg-base-200 bg-opacity-30 shadow-xl">
               <div class="card-body">
-                <h2 class="card-title text-left font-bold  text-primary uppercase">
+                <h2 class="card-title text-left font-bold  text-secondary uppercase">
                 Caliph Tools{" "}
                 </h2>
                 <p class=" text-left text-xl text-black font-sans">
@@ -132,7 +132,7 @@ const Carousel = () => {
                   joint venture for catering the Bangladeshi market.
                 </p>
                 <div class="card-actions justify-end">
-                  <button class="btn btn-primary">Purchase</button>
+                  <button class="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase</button>
                 </div>
               </div>
             </div>
@@ -155,7 +155,7 @@ const Carousel = () => {
                   Explore Promising Business Opportunities
                 </p>
                 <div class="card-actions justify-end">
-                  <button class="btn btn-primary">Purchase</button>
+                  <button class="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase</button>
                 </div>
               </div>
             </div>
