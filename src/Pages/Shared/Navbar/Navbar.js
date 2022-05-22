@@ -32,7 +32,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div class="navbar bg-[#f7f2ef]">
+    <div class="navbar bg-[rgb(255 249 246)]">
       <div class="navbar-start">
         <div class="dropdown">
           <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -61,7 +61,7 @@ const Navbar = () => {
         </div>
 
         <Link to="/" class="btn btn-ghost font-mono text-xl text-primary font-bold uppercase">
-          Caliph Tools Manufacturer
+          Caliph Tools
         </Link>
       </div>
 

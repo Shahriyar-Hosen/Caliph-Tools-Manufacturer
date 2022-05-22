@@ -93,7 +93,7 @@ const Carousel = () => {
 
         <div class="carousel-item relative float-left w-full">
           <img
-            src="https://i.ibb.co/0D3QK8s/37668.jpg"
+            src="https://i.ibb.co/nP3yj9y/foreman-yellow-hardhat-holding-hammer-shoulder-toolbox-hand-dreamily-looking-camera-workshop.jpg"
             class="block w-full"
             style={{ maxHeight: "700px" }}
             alt="..."
@@ -124,11 +124,11 @@ const Carousel = () => {
           <div class="carousel-caption hidden md:block absolute text-center">
             <div class="card max-w-4xl block mx-auto glass lg:card-side bg-base-200 bg-opacity-30 shadow-xl">
               <div class="card-body">
-                <h2 class="card-title text-left font-bold  text-primary">
-                  OZAR TOKU TOOLS{" "}
+                <h2 class="card-title text-left font-bold  text-primary uppercase">
+                Caliph Tools{" "}
                 </h2>
                 <p class=" text-left text-xl text-black font-sans">
-                  For Pneumatic tools, TOKU and Alok Tools have an exclusive
+                  For Pneumatic tools, Caliph Tools have an exclusive
                   joint venture for catering the Bangladeshi market.
                 </p>
                 <div class="card-actions justify-end">

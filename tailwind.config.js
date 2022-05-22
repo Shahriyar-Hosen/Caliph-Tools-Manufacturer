@@ -3,12 +3,12 @@ module.exports = {
     "./src/**/*.{html,js}",
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
-  light: {
+  daisyui: {
     themes: [
       {
-        mytheme: {
+        light: {
           primary: "#570DF8",
-          secondary: "#F000B8",
+          secondary: "#a5e844",
           accent: "#37CDBE",
           neutral: "#3D4451",
           "base-100": "#FFFFFF",
