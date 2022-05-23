@@ -20,14 +20,15 @@ const Navbar = () => {
       <li>
         <Link to="/profile" className="justify-between">
           Profile
-          <span className="badge">New</span>
+          <span className="badge badge-info text-white">New</span>
         </Link>
       </li>
       <li>
         <Link to="/settings">Settings</Link>
       </li>
       <li>
-        <Link to="/login">Logout</Link>
+        {/* Logout */}
+        <Link to="/login">Login</Link>
       </li>
     </>
   );
@@ -60,7 +61,10 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <Link to="/" className="btn btn-ghost font-mono text-xl text-primary font-bold uppercase">
+        <Link
+          to="/"
+          className="btn btn-ghost font-mono text-xl text-primary font-bold uppercase"
+        >
           Caliph Tools
         </Link>
       </div>
