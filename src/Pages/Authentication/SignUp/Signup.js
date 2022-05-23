@@ -7,6 +7,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.inite";
 import Loading from "../../Shared/Loading";
+import useToken from "../../../hooks/useToken";
 
 const Signup = () => {
   const [agree, setAgree] = useState(true);
@@ -17,6 +18,7 @@ const Signup = () => {
     });
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [token] = useToken(user || gUser);
 
   const navigate = useNavigate();
   let location = useLocation();
@@ -25,12 +27,10 @@ const Signup = () => {
   let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (user || gUser) {
-      // navigate(from, { replace: true });
-      console.log(user);
-      navigate("/");
+    if (token) {
+      navigate(from, { replace: true });
     }
-  }, [user, gUser, navigate, from]);
+  }, [token, navigate, from]);
 
   if (loading || gLoading || updating) {
     return <Loading></Loading>;

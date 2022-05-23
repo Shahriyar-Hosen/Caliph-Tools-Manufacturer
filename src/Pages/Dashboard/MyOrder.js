@@ -28,8 +28,8 @@ const MyOrder = () => {
             </tr>
           </thead>
           <tbody>
-            {orders?.map((order) => (
-              <OrderRow key={order._id} order={order}></OrderRow>
+            {orders?.map((order, index) => (
+              <OrderRow key={order._id} order={order}index={index}></OrderRow>
             ))}
           </tbody>
         </table>

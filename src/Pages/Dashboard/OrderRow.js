@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const OrderRow = ({ order }) => {
+const OrderRow = ({ order, index }) => {
   const { toolsName, orderQuantity, price, status, paid } = order;
 
   return (
     <tr>
-      <th>1</th>
+      <th>{index + 1}</th>
       <td title={toolsName}>
         {toolsName.length > 20 ? toolsName.slice(0, 20) + "..." : toolsName}
       </td>
