@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
 
 const Purchase = () => {
   const { id } = useParams();
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
 
   const [tool, setTool] = useState([]);
   const [orderQuantity, setOrderQuantity] = useState(0);
@@ -56,26 +58,33 @@ const Purchase = () => {
 
   const orderForm = (event) => {
     event.preventDefault();
-    const name = displayName;
     const address = event.target.address.value;
     const phone = Number(event.target.phone.value);
 
     const order = {
-      toolsId: id,
-      toolsName: name,
       date,
+      toolsId: id,
+      userName: displayName,
       email,
-      quantity: orderQuantity,
+      phone: phone,
+      address: address,
+      toolsName: name,
+      quantity,
+      orderQuantity: orderQuantity,
       price: totalPrice,
       status: "pending",
-      paid: true,
+      paid: false,
     };
-
-    console.log(name, email, address, phone, orderQuantity, totalPrice);
 
     axios
       .post("http://localhost:5000/orders", order)
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.status === 200) {
+          toast("Your order is successful. Please pay");
+          console.log("Your order is successful. Please pay");
+          navigate("/dashboard");
+        }
+      })
       .catch((error) => console.log(error));
   };
   return (
