@@ -26,7 +26,7 @@ const Tools = () => {
       {tools.length === 0 ? (
         <progress class="progress block w-1/2  mx-auto"></progress>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-5">
           {tools.map((tool) => (
             <ToolsCard key={tool._id} tools={tool}></ToolsCard>
           ))}
