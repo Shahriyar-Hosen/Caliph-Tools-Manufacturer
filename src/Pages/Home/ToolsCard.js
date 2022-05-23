@@ -14,7 +14,7 @@ const ToolsCard = ({ tools }) => {
           <p>
             {description.length > 100
               ? description.slice(0, 100) + "..."
-              : { description }}
+              : description}
           </p>
           <p>Price: ${price}</p>
           <p>Quantity: {quantity}</p>
