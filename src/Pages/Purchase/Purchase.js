@@ -60,7 +60,7 @@ const Purchase = () => {
     const address = event.target.address.value;
     const phone = Number(event.target.phone.value);
 
-    const solded = {
+    const order = {
       toolsId: id,
       toolsName: name,
       date,
@@ -72,6 +72,11 @@ const Purchase = () => {
     };
 
     console.log(name, email, address, phone, orderQuantity, totalPrice);
+
+    axios
+      .post("http://localhost:5000/orders", order)
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
   };
   return (
     <div>
@@ -200,12 +205,12 @@ const Purchase = () => {
                     defaultValue={orderQuantity}
                     onBlur={(e) => setQuantityValue(Number(e.target.value))}
                   />
-                  <button
+                  <span
                     onClick={() => updateQuantity(quantityValue)}
                     className=" font-bold text-secondary bg-accent bg-opacity-50  py-3 rounded-lg px-4"
                   >
                     Ok
-                  </button>
+                  </span>
                 </label>
               </div>
               <div class="form-control">
