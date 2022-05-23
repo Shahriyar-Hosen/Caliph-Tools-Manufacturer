@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.inite";
@@ -30,7 +31,15 @@ const AddReviews = () => {
       date,
     };
 
-    console.log(review);
+    axios
+      .post("http://localhost:5000/reviews", review)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("Your order is successful. Please pay");
+          // Navigate("/dashboard");
+        }
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <div>

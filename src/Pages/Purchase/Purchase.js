@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
 
@@ -80,7 +79,6 @@ const Purchase = () => {
       .post("http://localhost:5000/orders", order)
       .then((res) => {
         if (res.status === 200) {
-          toast("Your order is successful. Please pay");
           console.log("Your order is successful. Please pay");
           navigate("/dashboard");
         }

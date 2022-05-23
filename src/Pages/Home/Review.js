@@ -1,7 +1,7 @@
 import React from "react";
 
 const Review = ({ reviews }) => {
-  const { name, img, description, rating, date } = reviews;
+  const { name, img, description, retting, date } = reviews;
 
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
@@ -14,7 +14,7 @@ const Review = ({ reviews }) => {
         </p>
         <div className="card-actions justify-between items-center">
           <div>
-            <span className="text-xl font-bold t test-secondary">{rating}</span>
+            <span className="text-xl font-bold t test-secondary">{retting}</span>
 
             <div className="rating rating-md rating-half">
               <input type="radio" name="rating-10" className="rating-hidden" />
