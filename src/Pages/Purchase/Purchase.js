@@ -3,11 +3,15 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
 import auth from "../../firebase.inite";
+import Loading from "../Shared/Loading";
 
 const Purchase = () => {
-  const [tool, setTool] = useState([]);
   const { id } = useParams();
   const [user] = useAuthState(auth);
+
+  const [tool, setTool] = useState([]);
+  const [orderQuantity, setOrderQuantity] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   // Read / Get Method - Read by ID
   useEffect(() => {
@@ -15,6 +19,8 @@ const Purchase = () => {
       try {
         const res = await axios.get(`http://localhost:5000/tools/${id}`);
         setTool(res.data);
+        setOrderQuantity(res.data.minOrder);
+        setTotalPrice(res.data.minOrder * res.data.price);
       } catch (error) {
         console.error(error);
       }
@@ -26,10 +32,26 @@ const Purchase = () => {
   const { name, img, price, quantity, minOrder, description } = tool;
   const { displayName, email } = user;
 
+  if (tool.length === 0) {
+    return <Loading></Loading>;
+  }
+
+  const order = (value) => {
+    if (minOrder <= orderQuantity && quantity >= orderQuantity) {
+      setOrderQuantity(orderQuantity + value);
+      setTotalPrice(orderQuantity * price);
+    }
+  };
+
   const orderForm = (event) => {
     event.preventDefault();
     const name = displayName;
-    // const name = event.target.name.value;
+    const address = event.target.address.value;
+    const phone = event.target.phone.value;
+    const inputQuantity = event.target.quantity.value;
+    const inputTotal = event.target.total.value;
+
+    console.log(name, email, address, phone, inputQuantity, inputTotal);
   };
   return (
     <div>
@@ -101,6 +123,7 @@ const Purchase = () => {
                 <input
                   type="text"
                   placeholder="Address"
+                  name="address"
                   class="input input-bordered"
                   required
                 />
@@ -112,6 +135,7 @@ const Purchase = () => {
                 <input
                   type="Number"
                   placeholder="Phone"
+                  name="phone"
                   class="input input-bordered"
                   required
                 />
@@ -121,11 +145,13 @@ const Purchase = () => {
                 <label class="label">
                   <span class="label-text">Quantity</span>
                 </label>
+
                 <input
-                  type="Number"
+                  type="text"
                   placeholder="Quantity"
+                  name="quantity"
                   class="input input-bordered"
-                  value={quantity}
+                  defaultValue={orderQuantity}
                 />
               </div>
               <div class="form-control">
@@ -133,15 +159,16 @@ const Purchase = () => {
                   <span class="label-text">Total Price</span>
                 </label>
                 <input
-                  type="Number"
-                  placeholder="Phone"
+                  type="text"
+                  placeholder="Total Price"
+                  name="total"
                   class="input input-bordered"
-                  required
+                  defaultValue={totalPrice}
                 />
               </div>
               <div class="form-control mt-6">
                 <button class="btn bg-gradient-to-r from-accent  to-success border-0 text-white">
-                  Purchase
+                  Pay Now
                 </button>
               </div>
             </form>
