@@ -26,10 +26,15 @@ const Purchase = () => {
   const { name, img, price, quantity, minOrder, description } = tool;
   const { displayName, email } = user;
 
+  const orderForm = (event) => {
+    event.preventDefault();
+    const name = displayName;
+    // const name = event.target.name.value;
+  };
   return (
     <div>
       <h1 className="text-primary text-4xl font-bold text-center my-5">
-        Please confirm order{" "}
+        Tools Details{" "}
       </h1>
       {/* Tools cards */}
       <div class="hero py-10 bg-yellow-50 text-black  lg:rounded-lg">
@@ -51,9 +56,96 @@ const Purchase = () => {
         </div>
       </div>
       {/* Tools description*/}
-      <div class="card w-full block mx-auto bg-base-100 shadow-lg mb-10">
+      <div class="card w-full block mx-auto bg-base-100 shadow-lg mb-12">
         <div class="card-body px-14">
           <p>{description}</p>
+        </div>
+      </div>
+
+      <h1 className="text-primary text-4xl font-bold text-center mb-5">
+        Please confirm order{" "}
+      </h1>
+      {/* Order Form */}
+      <div class="hero py-10 bg-yellow-50">
+        <div class="card flex-shrink-0 w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl shadow-2xl bg-base-100">
+          <div class="card-body">
+            <form onSubmit={orderForm}>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={displayName}
+                  disabled
+                  class="input input-bordered"
+                />
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Email</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  disabled
+                  class="input input-bordered"
+                />
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Address</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Address"
+                  class="input input-bordered"
+                  required
+                />
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Phone</span>
+                </label>
+                <input
+                  type="Number"
+                  placeholder="Phone"
+                  class="input input-bordered"
+                  required
+                />
+              </div>
+              <div class="divider">Total</div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Quantity</span>
+                </label>
+                <input
+                  type="Number"
+                  placeholder="Quantity"
+                  class="input input-bordered"
+                  value={quantity}
+                />
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Total Price</span>
+                </label>
+                <input
+                  type="Number"
+                  placeholder="Phone"
+                  class="input input-bordered"
+                  required
+                />
+              </div>
+              <div class="form-control mt-6">
+                <button class="btn bg-gradient-to-r from-accent  to-success border-0 text-white">
+                  Purchase
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
