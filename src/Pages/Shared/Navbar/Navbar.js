@@ -96,7 +96,7 @@ const Navbar = () => {
                 src={
                   user?.photoURL
                     ? user.photoURL
-                    : "https://api.lorem.space/image/face?hash=33791"
+                    : "https://i.ibb.co/JtCw84w/user.png"
                 }
                 alt=""
               />
