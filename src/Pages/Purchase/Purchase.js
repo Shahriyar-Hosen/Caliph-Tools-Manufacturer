@@ -12,6 +12,7 @@ const Purchase = () => {
   const [tool, setTool] = useState([]);
   const [orderQuantity, setOrderQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [quantityValue, setQuantityValue] = useState(0);
 
   // Read / Get Method - Read by ID
   useEffect(() => {
@@ -32,14 +33,17 @@ const Purchase = () => {
   const { name, img, price, quantity, minOrder, description } = tool;
   const { displayName, email } = user;
 
+  useEffect(() => {
+    setTotalPrice(orderQuantity * price);
+  }, [orderQuantity, price]);
+
   if (tool.length === 0) {
     return <Loading></Loading>;
   }
 
-  const order = (value) => {
-    if (minOrder <= orderQuantity && quantity >= orderQuantity) {
+  const updateQuantity = (value) => {
+    if (orderQuantity + value >= minOrder && quantity >= orderQuantity) {
       setOrderQuantity(orderQuantity + value);
-      setTotalPrice(orderQuantity * price);
     }
   };
 
@@ -47,11 +51,9 @@ const Purchase = () => {
     event.preventDefault();
     const name = displayName;
     const address = event.target.address.value;
-    const phone = event.target.phone.value;
-    const inputQuantity = event.target.quantity.value;
-    const inputTotal = event.target.total.value;
+    const phone = Number(event.target.phone.value);
 
-    console.log(name, email, address, phone, inputQuantity, inputTotal);
+    console.log(name, email, address, phone, orderQuantity, totalPrice);
   };
   return (
     <div>
@@ -140,33 +142,61 @@ const Purchase = () => {
                   required
                 />
               </div>
+
               <div class="divider">Total</div>
+
               <div class="form-control">
                 <label class="label">
                   <span class="label-text">Quantity</span>
                 </label>
-
-                <input
-                  type="text"
-                  placeholder="Quantity"
-                  name="quantity"
-                  class="input input-bordered"
-                  defaultValue={orderQuantity}
-                />
+                <div className="w-full py-3 border-2 rounded-lg text-center">
+                  Total Quantity:{" "}
+                  <span className="font-bold">{orderQuantity}</span>
+                </div>
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Enter Quantity</span>
+                </label>
+                <label class="flex justify-between items-center">
+                  <input
+                    type="number"
+                    placeholder="Quantity"
+                    disabled
+                    class="input input-bordered w-full mx-1"
+                    defaultValue={minOrder}
+                  />
+                  +
+                  <input
+                    type="text"
+                    placeholder="Quantity"
+                    name="quantity"
+                    class="input input-bordered w-full mx-1"
+                    defaultValue={orderQuantity}
+                    onBlur={(e) => setQuantityValue(Number(e.target.value))}
+                  />
+                  <button
+                    onClick={() => updateQuantity(quantityValue)}
+                    className=" font-bold text-secondary bg-accent bg-opacity-50  py-3 rounded-lg px-4"
+                  >
+                    Ok
+                  </button>
+                </label>
               </div>
               <div class="form-control">
                 <label class="label">
                   <span class="label-text">Total Price</span>
                 </label>
-                <input
-                  type="text"
-                  placeholder="Total Price"
-                  name="total"
-                  class="input input-bordered"
-                  defaultValue={totalPrice}
-                />
+
+                <div className="w-full py-3 border-2 rounded-lg text-center  font-bold text-secondary">
+                  Total: ${totalPrice}
+                </div>
               </div>
-              <div class="form-control mt-6">
+              <div class="mt-6 flex justify-center mb-2">
+                <span class="label-text mr-5 ">Ready to Purchase Now </span>
+                <input type="checkbox" class="checkbox checkbox-accent" />
+              </div>
+              <div class="form-control">
                 <button class="btn bg-gradient-to-r from-accent  to-success border-0 text-white">
                   Pay Now
                 </button>
