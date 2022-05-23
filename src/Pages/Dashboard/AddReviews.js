@@ -81,7 +81,7 @@ const AddReviews = () => {
               </label>
             </div>
             <div class="form-control ">
-              <button class="btn btn-primary bg-green-500 text-white text-lg">
+              <button class="btn bg-gradient-to-r from-accent  to-success border-0 text-white text-lg">
                 Add
               </button>
             </div>

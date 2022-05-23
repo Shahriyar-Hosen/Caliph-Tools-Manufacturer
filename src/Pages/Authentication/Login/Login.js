@@ -43,7 +43,7 @@ const Login = () => {
     signInWithEmailAndPassword(email, password);
   };
   return (
-    <div className="min-h-screen lg:flex">
+    <div className="min-h-screen lg:flex mb-8">
       <div className="hidden lg:w-3/5 lg:flex items-center justify-center bg-indigo-100 flex-1 h-screen">
         <div className="max-w-xs transform duration-200 hover:scale-110 cursor-pointer">
           <svg
