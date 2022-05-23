@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.inite";
 import Loading from "../../Shared/Loading";
@@ -7,6 +10,7 @@ import Loading from "../../Shared/Loading";
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
   const navigate = useNavigate();
   let location = useLocation();
@@ -15,20 +19,20 @@ const Login = () => {
   let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (user) {
+    if (user || gUser) {
       // navigate(from, { replace: true });
-      console.log(user);
       navigate("/");
     }
-  }, [user, navigate, from]);
-  // || gLoading
-  if (loading) {
+  }, [user, gUser, navigate, from]);
+
+  if (loading || gLoading) {
     return <Loading></Loading>;
   }
-  // || gError
-  // || gError?.message
-  if (error) {
-    signUpError = <p className="text-red-500">{error?.message}</p>;
+
+  if (error || gError) {
+    signUpError = (
+      <p className="text-red-500">{error?.message || gError?.message}</p>
+    );
   }
 
   const handleSubmit = (event) => {
@@ -275,7 +279,10 @@ const Login = () => {
               </Link>
             </div>
             <div className="divider">OR</div>
-            <button className="btn btn-outline btn-info w-full text-xl font-semibold">
+            <button
+              onClick={() => signInWithGoogle()}
+              className="btn btn-outline btn-info w-full text-xl font-semibold"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 488 512"
