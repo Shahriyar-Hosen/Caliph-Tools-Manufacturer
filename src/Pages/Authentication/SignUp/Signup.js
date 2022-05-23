@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [agree, setAgree] = useState(true);
+  const handleSignup = (event) => {
+    event.preventDefault();
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    console.log(name, email, password);
+  };
   return (
     <section className="min-h-screen bg-sky-100 text-black flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
@@ -63,7 +70,7 @@ const Signup = () => {
                 </div>
               </div>
 
-              <form onSubmit={"handleSignup"} className="mx-auto max-w-xs">
+              <form onSubmit={handleSignup} className="mx-auto max-w-xs">
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="text"
