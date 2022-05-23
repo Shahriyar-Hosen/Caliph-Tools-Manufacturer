@@ -2,7 +2,7 @@ import React from "react";
 
 const BusinessSummary = () => {
   return (
-    <div className="my-20 text-xl">
+    <div className="my-20 text-xl bg-info p-10 bg-opacity-10">
       <h1 className="text-primary text-4xl font-bold text-center mb-1 ">
         Honesty is The Key To Business
       </h1>

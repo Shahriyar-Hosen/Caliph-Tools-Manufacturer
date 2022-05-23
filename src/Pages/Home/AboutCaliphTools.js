@@ -2,12 +2,12 @@ import React from "react";
 
 const AboutCaliphTools = () => {
   return (
-    <section className="my-20 mx-10">
+    <section className="my-20">
       <h1 className="text-primary text-4xl font-bold text-center mb-5">
         About Caliph Tools®
       </h1>
 
-      <div className="hero lg:text-left text-center">
+      <div className="hero lg:text-left text-center bg-info bg-opacity-10  p-10">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
             src="https://i.ibb.co/2q1QSjK/yellow-set-tools.jpg"
