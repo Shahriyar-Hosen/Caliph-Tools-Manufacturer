@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.inite";
@@ -9,8 +10,10 @@ import Loading from "../../Shared/Loading";
 
 const Signup = () => {
   const [agree, setAgree] = useState(true);
+  
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
   const navigate = useNavigate();
@@ -20,21 +23,22 @@ const Signup = () => {
   let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (user) {
+    if (user || gUser) {
       // navigate(from, { replace: true });
       console.log(user);
       navigate("/");
     }
-  }, [user, navigate, from]);
-  // || gLoading
-  if (loading || updating) {
+  }, [user, gUser, navigate, from]);
+
+  if (loading || gLoading || updating) {
     return <Loading></Loading>;
   }
-  // || gError
-  // || gError?.message || updateError?.message
-  if (error || updateError) {
+
+  if (error || gError || updateError) {
     signUpError = (
-      <p className="text-red-500">{error?.message || updateError?.message}</p>
+      <p className="text-red-500">
+        {error?.message || gError?.message || updateError?.message}
+      </p>
     );
   }
 
@@ -76,7 +80,10 @@ const Signup = () => {
 
             <div className="w-full flex-1 mt-8">
               <div className="flex flex-col items-center">
-                <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-secondary flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                <button
+                  onClick={() => signInWithGoogle()}
+                  className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-secondary flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+                >
                   <div className="bg-white p-2 rounded-full">
                     <svg className="w-4" viewBox="0 0 533.5 544.3">
                       <path
@@ -128,7 +135,7 @@ const Signup = () => {
                 />
 
                 {signUpError}
-                
+
                 <p className="mt-5 text-secondary text-center flex justify-center items-center">
                   <input
                     onClick={() => setAgree(!agree)}
