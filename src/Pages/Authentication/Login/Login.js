@@ -2,9 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    console.log(email, password);
+  };
   return (
     <div className="min-h-screen lg:flex">
-      <div className="hidden lg:flex items-center justify-center bg-indigo-100 flex-1 h-screen">
+      <div className="hidden lg:w-3/5 lg:flex items-center justify-center bg-indigo-100 flex-1 h-screen">
         <div className="max-w-xs transform duration-200 hover:scale-110 cursor-pointer">
           <svg
             className="w-5/6 mx-auto"
@@ -162,12 +168,12 @@ const Login = () => {
           </svg>
         </div>
       </div>
-      <div className="lg:w-1/2 xl:w-full 2xl:mx-32 lg:my-auto xl:max-w-screen-sm">
+      <div className="lg:w-2/5 xl:w-full 2xl:mx-32 lg:my-auto xl:max-w-screen-sm">
         <div className="py-12 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
           <div className="cursor-pointer flex items-center">
             <div>
               <img
-              className="w-16"
+                className="w-16"
                 src="https://i.ibb.co/4S5jxwZ/istockphoto-974697596-612x612-removebg-preview.png"
                 alt=""
               />
@@ -182,10 +188,10 @@ const Login = () => {
             className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
                     xl:text-bold"
           >
-            Log in
+            Please Login
           </h2>
           <div className="mt-12">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div>
                 <div className="text-sm font-bold text-gray-700 tracking-wide">
                   Email Address
@@ -193,6 +199,7 @@ const Login = () => {
                 <input
                   className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                   type="email"
+                  name="email"
                   placeholder="user@gmail.com"
                 />
               </div>
@@ -214,13 +221,14 @@ const Login = () => {
                 <input
                   className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                   type="password"
+                  name="password"
                   placeholder="Enter your password"
                 />
               </div>
               <div className="mt-10">
                 <button
-                  className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-700
-                                shadow-lg"
+                  type="submit"
+                  className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-700 shadow-lg text-xl"
                 >
                   Log In
                 </button>
