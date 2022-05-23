@@ -10,7 +10,9 @@ const ToolsCard = ({ tools }) => {
           <img src={img} alt={name} />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{name}</h2>
+          <h2 className="card-title" title={name}>
+            {name.length > 30 ? name.slice(0, 30) + "..." : name}
+          </h2>
           <p>
             {description.length > 100
               ? description.slice(0, 100) + "..."
@@ -21,7 +23,7 @@ const ToolsCard = ({ tools }) => {
           <p>Minimum order quantity: {minOrder}</p>
           <div className="card-actions justify-center mt-2">
             <Link
-              to={`/purchase:${_id}`}
+              to={`/purchase${_id}`}
               className="btn bg-gradient-to-r from-accent  to-success border-0 text-white"
             >
               Buy Now

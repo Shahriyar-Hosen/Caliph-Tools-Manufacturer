@@ -7,7 +7,7 @@ import Signup from "./Pages/Authentication/SignUp/Signup";
 import Blogs from "./Pages/Blogs/Blogs";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Home from "./Pages/Home/Home";
-import Purchase from "./Pages/Home/Purchase";
+import Purchase from "./Pages/Purchase/Purchase";
 import Profile from "./Pages/Profile/Profile";
 import Settings from "./Pages/Settings/Settings";
 import Footer from "./Pages/Shared/Footer/Footer";
