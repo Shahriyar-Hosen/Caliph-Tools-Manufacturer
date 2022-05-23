@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import auth from "../../../firebase.inite";
+import Loading from "../../Shared/Loading";
 
 const Signup = () => {
   const [agree, setAgree] = useState(true);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
   const navigate = useNavigate();
   let location = useLocation();
@@ -17,26 +22,30 @@ const Signup = () => {
   useEffect(() => {
     if (user) {
       // navigate(from, { replace: true });
+      console.log(user);
       navigate("/");
     }
   }, [user, navigate, from]);
-  // || gLoading || updating
-  if (loading) {
-    // return <Loading></Loading>;
+  // || gLoading
+  if (loading || updating) {
+    return <Loading></Loading>;
   }
   // || gError
   // || gError?.message || updateError?.message
-  if (error) {
-    signUpError = <p className="text-red-500">{error?.message}</p>;
+  if (error || updateError) {
+    signUpError = (
+      <p className="text-red-500">{error?.message || updateError?.message}</p>
+    );
   }
 
-  const handleSignup = (event) => {
+  const handleSignup = async (event) => {
     event.preventDefault();
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    createUserWithEmailAndPassword(email, password);
-    console.log(name, email, password);
+
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: name });
   };
   return (
     <section className="min-h-screen bg-sky-100 text-black flex justify-center">
@@ -118,6 +127,8 @@ const Signup = () => {
                   placeholder="Password"
                 />
 
+                {signUpError}
+                
                 <p className="mt-5 text-secondary text-center flex justify-center items-center">
                   <input
                     onClick={() => setAgree(!agree)}

@@ -1,12 +1,42 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import auth from "../../../firebase.inite";
+import Loading from "../../Shared/Loading";
 
 const Login = () => {
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const navigate = useNavigate();
+  let location = useLocation();
+
+  let signUpError;
+  let from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    if (user) {
+      // navigate(from, { replace: true });
+      console.log(user);
+      navigate("/");
+    }
+  }, [user, navigate, from]);
+  // || gLoading
+  if (loading) {
+    return <Loading></Loading>;
+  }
+  // || gError
+  // || gError?.message
+  if (error) {
+    signUpError = <p className="text-red-500">{error?.message}</p>;
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-    console.log(email, password);
+
+    signInWithEmailAndPassword(email, password);
   };
   return (
     <div className="min-h-screen lg:flex">
@@ -225,6 +255,7 @@ const Login = () => {
                   placeholder="Enter your password"
                 />
               </div>
+              {signUpError}
               <div className="mt-10">
                 <button
                   type="submit"
