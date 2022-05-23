@@ -146,6 +146,13 @@ const Purchase = () => {
               <div class="divider">Total</div>
 
               <div class="form-control">
+                <div className="w-full py-3 border-2 rounded-lg text-center bg-accent bg-opacity-20">
+                  Per Unit Price:{" "}
+                  <span className="font-bold">{price}</span>
+                </div>
+              </div>
+
+              <div class="form-control">
                 <label class="label">
                   <span class="label-text">Quantity</span>
                 </label>
@@ -154,6 +161,7 @@ const Purchase = () => {
                   <span className="font-bold">{orderQuantity}</span>
                 </div>
               </div>
+
               <div class="form-control">
                 <label class="label">
                   <span class="label-text">Enter Quantity</span>
