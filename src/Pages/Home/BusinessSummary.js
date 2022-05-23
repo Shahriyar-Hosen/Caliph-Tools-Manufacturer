@@ -22,8 +22,8 @@ const BusinessSummary = () => {
               />
             </div>
             <div className="stat-title">Tools</div>
-            <div className="stat-value text-secondary">75+ </div>
-            <div className="stat-desc"> 80+ Tools Available</div>
+            <div className="stat-value text-secondary">237+ </div>
+            <div className="stat-desc"> 80+ Tools Items Available</div>
           </div>
 
           <div className="stat">
@@ -61,7 +61,7 @@ const BusinessSummary = () => {
               />
             </div>
             <div className="stat-title">Clients Feedbacks</div>
-            <div className="stat-value text-info">100%</div>
+            <div className="stat-value text-info">2.8M+</div>
             <div className="stat-desc text-secondary">
               Feedback on 99% of orders
             </div>

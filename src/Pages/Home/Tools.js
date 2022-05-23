@@ -18,7 +18,6 @@ const Tools = () => {
 
   return (
     <div className="my-20">
-
       <h1 className="text-primary text-4xl font-bold text-center mb-5">
         Tools
       </h1>
@@ -27,7 +26,7 @@ const Tools = () => {
         <progress class="progress block w-1/2  mx-auto"></progress>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-5">
-          {tools.map((tool) => (
+          {tools.slice(0, 6).map((tool) => (
             <ToolsCard key={tool._id} tools={tool}></ToolsCard>
           ))}
         </div>

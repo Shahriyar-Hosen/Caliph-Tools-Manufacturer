@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Tom thomas",
+    "img": "https://api.lorem.space/image/face?hash=47449",
+    "description": "With the correct information given to EP they managed to source the correct parts for a specialist vehicle at 50% cheaper than the manufacturer. We'll done.",
+    "rating": 5,
+    "date": "2/4/22"
+  },
+  {
+    "name": "Jim D",
+    "img": "https://api.lorem.space/image/face?hash=55350",
+    "description": "The price most everyday stuff for the tool is always at discounted prices and decent quality. People behind the counter are most knowledgable and helpfull.",
+    "rating": 5,
+    "date": "5/12/22"
+  },
+  {
+    "name": "SIP 12” Floor-Standing Workshop Fan",
+    "img": "https://api.lorem.space/image/face?hash=47449",
+    "description": "Easy ordering pick up and collection no waiting perfect service all round",
+    "rating": 4.9,
+    "date": "4/16/22"
+  }
+]
