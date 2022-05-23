@@ -235,7 +235,7 @@ const Login = () => {
               </div>
             </form>
             <div className="my-8 text-sm font-display font-semibold text-gray-700 text-center">
-              Don't have an account ?{" "}
+              Don't have an account?{" "}
               <Link
                 to="/signup"
                 className="cursor-pointer text-indigo-600 hover:text-indigo-800"
