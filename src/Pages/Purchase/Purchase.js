@@ -13,6 +13,7 @@ const Purchase = () => {
   const [orderQuantity, setOrderQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [quantityValue, setQuantityValue] = useState(0);
+  const [agree, setAgree] = useState(true);
 
   // Read / Get Method - Read by ID
   useEffect(() => {
@@ -147,8 +148,7 @@ const Purchase = () => {
 
               <div class="form-control">
                 <div className="w-full py-3 border-2 rounded-lg text-center bg-accent bg-opacity-20">
-                  Per Unit Price:{" "}
-                  <span className="font-bold">{price}</span>
+                  Per Unit Price: <span className="font-bold">{price}</span>
                 </div>
               </div>
 
@@ -202,10 +202,14 @@ const Purchase = () => {
               </div>
               <div class="mt-6 flex justify-center mb-2">
                 <span class="label-text mr-5 ">Ready to Purchase Now </span>
-                <input type="checkbox" class="checkbox checkbox-accent" />
+                <input
+                  type="checkbox"
+                  class="checkbox checkbox-accent"
+                  onClick={() => setAgree(!agree)}
+                />
               </div>
               <div class="form-control">
-                <button class="btn bg-gradient-to-r from-accent  to-success border-0 text-white">
+                <button disabled={agree} class="btn bg-gradient-to-r from-accent  to-success border-0 text-white">
                   Pay Now
                 </button>
               </div>
