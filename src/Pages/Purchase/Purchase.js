@@ -34,6 +34,12 @@ const Purchase = () => {
   const { name, img, price, quantity, minOrder, description } = tool;
   const { displayName, email } = user;
 
+  // current date
+  const today = new Date();
+  const date =
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+  // ==================
+
   useEffect(() => {
     setTotalPrice(orderQuantity * price);
   }, [orderQuantity, price]);
@@ -53,6 +59,17 @@ const Purchase = () => {
     const name = displayName;
     const address = event.target.address.value;
     const phone = Number(event.target.phone.value);
+
+    const solded = {
+      toolsId: id,
+      toolsName: name,
+      date,
+      email,
+      quantity: orderQuantity,
+      price: totalPrice,
+      status: "pending",
+      paid: true,
+    };
 
     console.log(name, email, address, phone, orderQuantity, totalPrice);
   };
@@ -209,7 +226,10 @@ const Purchase = () => {
                 />
               </div>
               <div class="form-control">
-                <button disabled={agree} class="btn bg-gradient-to-r from-accent  to-success border-0 text-white">
+                <button
+                  disabled={agree}
+                  class="btn bg-gradient-to-r from-accent  to-success border-0 text-white"
+                >
                   Pay Now
                 </button>
               </div>
