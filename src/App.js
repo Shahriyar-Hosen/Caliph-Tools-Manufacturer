@@ -83,7 +83,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="addProduct"
+            path="addTools"
             element={
               <RequireAuth>
                 <AddTools />
