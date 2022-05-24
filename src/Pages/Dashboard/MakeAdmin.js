@@ -10,7 +10,7 @@ const MakeAdmin = () => {
     isLoading,
     refetch,
   } = useQuery("allUsers", () =>
-    axios.get("http://localhost:5000/users").then((res) => res.data)
+    axios.get("https://glacial-falls-86656.herokuapp.com/users").then((res) => res.data)
   );
   
   if (isLoading) {
@@ -18,8 +18,8 @@ const MakeAdmin = () => {
   }
   return (
     <div className="mx-3 h-full mb-8 border-b-8 border-secondary border-double">
-      <div class="overflow-x-auto mb-5">
-        <table class="table w-full">
+      <div className="overflow-x-auto mb-5">
+        <table className="table w-full">
           <thead>
             <tr>
               <th></th>

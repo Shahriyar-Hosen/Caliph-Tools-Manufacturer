@@ -6,7 +6,7 @@ const Dashboard = () => {
     <section className="min-h-screen">
       <div className=" flex justify-center items-center my-5">
         {/* menu-vertical lg: */}
-        <ul class="menu menu-vertical md:menu-horizontal bg-info bg-opacity-25 rounded-box text-secondary font-serif">
+        <ul className="menu menu-vertical md:menu-horizontal bg-info bg-opacity-25 rounded-box text-secondary font-serif">
           <li>
             <Link to="/dashboard">My Order</Link>
           </li>

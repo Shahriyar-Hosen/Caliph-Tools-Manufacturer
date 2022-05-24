@@ -15,7 +15,7 @@ const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
     console.log("tools", tools);
 
     axios
-      .put(`http://localhost:5000/tools/${id}`, tools)
+      .put(`https://glacial-falls-86656.herokuapp.com/tools/${id}`, tools)
       .then((res) => {
         if (res.status === 200) {
           console.log("Your Tools Update successfully");
@@ -29,47 +29,47 @@ const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
 
   return (
     <div>
-      <input type="checkbox" id="tools-update" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
+      <input type="checkbox" id="tools-update" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
           <h1 className="text-3xl font-bold text-center">Update Tools</h1>
           <label
-            for="tools-update"
-            class="btn btn-sm btn-circle absolute right-2 top-2"
+            htmlFor="tools-update"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
           </label>
-          <form onSubmit={updateTool} class="card-body">
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Price</span>
+          <form onSubmit={updateTool} className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Price</span>
               </label>
               <input
                 type="number"
                 name="price"
                 required
                 placeholder="price"
-                class="input input-bordered"
+                className="input input-bordered"
               />
             </div>
 
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Quantity</span>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Quantity</span>
               </label>
               <input
                 type="number"
                 name="quantity"
                 required
                 placeholder="quantity"
-                class="input input-bordered"
+                className="input input-bordered"
               />
             </div>
 
-            <div class="form-control ">
+            <div className="form-control ">
               <button
                 type="submit"
-                class="btn bg-gradient-to-r from-accent  to-success border-0 text-white text-lg"
+                className="btn bg-gradient-to-r from-accent  to-success border-0 text-white text-lg"
               >
                 Update
               </button>

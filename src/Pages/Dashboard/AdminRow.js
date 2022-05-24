@@ -14,7 +14,7 @@ const AdminRow = ({ user: dbUser, refetch }) => {
       role: "Admin",
     };
     axios
-      .put(`http://localhost:5000/user/${id}`, updateRole)
+      .put(`https://glacial-falls-86656.herokuapp.com/user/${id}`, updateRole)
       .then((res) => {
         if (res.status === 200) {
           console.log("Your Profile Update successfully");
@@ -30,7 +30,7 @@ const AdminRow = ({ user: dbUser, refetch }) => {
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
       // Delete Method update using id
-      const url = `http://localhost:5000/user/${id}`;
+      const url = `https://glacial-falls-86656.herokuapp.com/user/${id}`;
       const addUsers = async () => {
         try {
           const res = await axios.delete(url);
@@ -54,8 +54,8 @@ const AdminRow = ({ user: dbUser, refetch }) => {
   return (
     <tr>
       <th>
-        <div class="avatar">
-          <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+        <div className="avatar">
+          <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
             <img src={img ? img : "https://i.ibb.co/jfZpfx0/user.jpg"} alt="" />
           </div>
         </div>

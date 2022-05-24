@@ -10,7 +10,7 @@ const MyProfile = () => {
   const { email, displayName, photoURL } = user;
 
   const { data, isLoading, refetch } = useQuery("users", () =>
-    axios.get(`http://localhost:5000/user/${email}`).then((res) => res.data)
+    axios.get(`https://glacial-falls-86656.herokuapp.com/user/${email}`).then((res) => res.data)
   );
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const MyProfile = () => {
       img: photo,
     };
     axios
-      .put(`http://localhost:5000/user/${_id}`, updateProfile)
+      .put(`https://glacial-falls-86656.herokuapp.com/user/${_id}`, updateProfile)
       .then((res) => {
         if (res.status === 200) {
           console.log("Your Profile Update successfully");
@@ -54,10 +54,10 @@ const MyProfile = () => {
   };
   return (
     <div>
-      <div class="text-4xl font-bold pb-10 bg-yellow-50 text-center text-info py-5">
+      <div className="text-4xl font-bold pb-10 bg-yellow-50 text-center text-info py-5">
         <h1 className="mb-8 text-4xl">My Profile</h1>
-        <div class="avatar">
-          <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+        <div className="avatar">
+          <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
             <img
               src={
                 img || photoURL
@@ -72,45 +72,45 @@ const MyProfile = () => {
           {name || displayName ? name || displayName : "User Name"}
         </p>
       </div>
-      <div class="hero pb-10 bg-yellow-50">
-        <div class="card flex-shrink-0 w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl shadow-2xl bg-base-100">
-          <form onSubmit={ProfileSubmit} class="card-body">
+      <div className="hero pb-10 bg-yellow-50">
+        <div className="card flex-shrink-0 w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl shadow-2xl bg-base-100">
+          <form onSubmit={ProfileSubmit} className="card-body">
             {name || displayName ? (
               ""
             ) : (
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Name</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
                 </label>
                 <input
                   type="text"
                   name="name"
                   placeholder="Add Full Name"
-                  class="input w-full"
+                  className="input w-full"
                 />
               </div>
             )}
 
             {!email ? (
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Email</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
                 </label>
                 <input
                   type="email"
                   name="email"
                   placeholder="Add Your Email"
-                  class="input w-full"
+                  className="input w-full"
                 />
               </div>
             ) : (
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Email</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
                 </label>
                 <input
                   type="email"
-                  class="input w-full"
+                  className="input w-full"
                   disabled
                   defaultValue={email}
                 />
@@ -118,81 +118,81 @@ const MyProfile = () => {
             )}
 
             {!phone ? (
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Phone</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Phone</span>
                 </label>
                 <input
                   type="number"
                   name="number"
                   placeholder="Add Your Phone"
-                  class="input w-full"
+                  className="input w-full"
                 />
               </div>
             ) : (
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Phone</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Phone</span>
                 </label>
-                <input type="text" class="input w-full" defaultValue={phone} />
+                <input type="text" className="input w-full" defaultValue={phone} />
               </div>
             )}
 
             {!address ? (
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Address</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Address</span>
                 </label>
                 <input
                   type="text"
                   name="address"
                   placeholder="Add Your Address"
-                  class="input w-full"
+                  className="input w-full"
                 />
               </div>
             ) : (
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Address</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Address</span>
                 </label>
                 <input
                   type="text"
-                  class="input w-full"
+                  className="input w-full"
                   defaultValue={address}
                 />
               </div>
             )}
 
             {!education ? (
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Education</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Education</span>
                 </label>
                 <input
                   type="text"
                   name="education"
                   placeholder="Add Your Education"
-                  class="input w-full"
+                  className="input w-full"
                 />
               </div>
             ) : (
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Education</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Education</span>
                 </label>
                 <input
                   type="text"
-                  class="input w-full"
+                  className="input w-full"
                   defaultValue={education}
                 />
               </div>
             )}
 
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">
-                  <div class="indicator">
-                    <span class="indicator-item badge badge-info bg-opacity-20 border-0 text-secondary">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">
+                  <div className="indicator">
+                    <span className="indicator-item badge badge-info bg-opacity-20 border-0 text-secondary">
                       link
                     </span>
                     <span>Profile Picture </span>
@@ -203,14 +203,14 @@ const MyProfile = () => {
                 type="text"
                 name="photo"
                 placeholder="Update Your Picture"
-                class="input w-full"
+                className="input w-full"
               />
             </div>
 
-            <div class="form-control ">
+            <div className="form-control ">
               <button
                 type="submit"
-                class="btn bg-gradient-to-r from-accent  to-success border-0 text-white text-lg"
+                className="btn bg-gradient-to-r from-accent  to-success border-0 text-white text-lg"
               >
                 Update
               </button>

@@ -14,8 +14,8 @@ const MyOrder = () => {
     data: orders,
     isLoading,
     refetch,
-  } = useQuery("orders", () =>
-    axios.get(`http://localhost:5000/orders/${email}`).then((res) => res.data)
+  } = useQuery("myOrders", () =>
+    axios.get(`https://glacial-falls-86656.herokuapp.com/orders/${email}`).then((res) => res.data)
   );
 
   if (loading || isLoading) {
@@ -23,8 +23,8 @@ const MyOrder = () => {
   }
   return (
     <div className="mx-3 mb-8 border-b-8 border-secondary border-double">
-      <div class="overflow-x-auto mb-5">
-        <table class="table w-full">
+      <div className="overflow-x-auto mb-5">
+        <table className="table w-full">
           <thead>
             <tr>
               <th></th>

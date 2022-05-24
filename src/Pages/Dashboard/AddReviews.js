@@ -1,11 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
 
 const AddReviews = () => {
   const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
+
   if (loading) {
     return <Loading></Loading>;
   }
@@ -32,29 +35,29 @@ const AddReviews = () => {
     };
 
     axios
-      .post("http://localhost:5000/reviews", review)
+      .post("https://glacial-falls-86656.herokuapp.com/reviews", review)
       .then((res) => {
         if (res.status === 200) {
           console.log("Your review add successful. Thanks");
-          // Navigate("/dashboard");
+          navigate("/dashboard");
         }
       })
       .catch((error) => console.log(error));
   };
   return (
     <div>
-      <h1 class="text-4xl font-bold pb-10 bg-yellow-50 text-center text-primary pt-5">
+      <h1 className="text-4xl font-bold pb-10 bg-yellow-50 text-center text-primary pt-5">
         Add A Reviews
       </h1>
-      <div class="hero pb-10 bg-yellow-50">
-        <div class="card flex-shrink-0 w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl shadow-2xl bg-base-100">
-          <form onSubmit={reviewSubmit} class="card-body">
+      <div className="hero pb-10 bg-yellow-50">
+        <div className="card flex-shrink-0 w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl shadow-2xl bg-base-100">
+          <form onSubmit={reviewSubmit} className="card-body">
             <span className="text-center text-md font-bold text-secondary font-mono">
               Date: {date}
             </span>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Retting</span>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Retting</span>
               </label>
               <input
                 type="number"
@@ -63,27 +66,27 @@ const AddReviews = () => {
                 name="retting"
                 required
                 placeholder="Retting"
-                class="input input-bordered"
+                className="input input-bordered"
               />
-              <label class="label">
-                <span class="label-text">Give a rating between 1 and 5</span>
+              <label className="label">
+                <span className="label-text">Give a rating between 1 and 5</span>
               </label>
             </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Reviews</span>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Reviews</span>
               </label>
               <textarea
                 name="review"
                 required
-                class="textarea textarea-bordered h-24"
+                className="textarea textarea-bordered h-24"
               ></textarea>
-              <label class="label">
-                <span class="label-text">Please review within 300 words</span>
+              <label className="label">
+                <span className="label-text">Please review within 300 words</span>
               </label>
             </div>
-            <div class="form-control ">
-              <button class="btn bg-gradient-to-r from-accent  to-success border-0 text-white text-lg">
+            <div className="form-control ">
+              <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white text-lg">
                 Add
               </button>
             </div>

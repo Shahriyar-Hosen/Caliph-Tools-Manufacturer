@@ -7,7 +7,7 @@ const Reviews = () => {
   useEffect(() => {
     const reviewsData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/reviews");
+        const res = await axios.get("https://glacial-falls-86656.herokuapp.com/reviews");
         setReviews(res.data);
       } catch (error) {
         console.error(error);
@@ -22,7 +22,7 @@ const Reviews = () => {
         Customers Reviews
       </h1>
       {reviews.length === 0 ? (
-        <progress class="progress block w-1/2  mx-auto"></progress>
+        <progress className="progress block w-1/2  mx-auto"></progress>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-5">
           {reviews.slice(0, 3).map((review) => (

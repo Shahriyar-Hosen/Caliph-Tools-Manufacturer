@@ -12,7 +12,7 @@ const ManageTools = () => {
     isLoading,
     refetch,
   } = useQuery("tools", () =>
-    axios.get("http://localhost:5000/tools").then((res) => res.data)
+    axios.get("https://glacial-falls-86656.herokuapp.com/tools").then((res) => res.data)
   );
 
   if (isLoading) {
@@ -20,8 +20,8 @@ const ManageTools = () => {
   }
   return (
     <div className="mx-3 h-full mb-8 border-b-8 border-secondary border-double">
-      <div class="overflow-x-auto mb-5">
-        <table class="table w-full">
+      <div className="overflow-x-auto mb-5">
+        <table className="table w-full">
           <thead>
             <tr>
               <th></th>

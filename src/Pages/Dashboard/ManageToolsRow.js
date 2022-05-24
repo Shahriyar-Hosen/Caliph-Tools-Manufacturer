@@ -10,7 +10,7 @@ const ManageToolsRow = ({ tool, index, refetch, setUpdate }) => {
     // Delete / DELETE Method - delete by id
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
-      const url = `http://localhost:5000/tools/${id}`;
+      const url = `https://glacial-falls-86656.herokuapp.com/tools/${id}`;
       const addUsers = async () => {
         try {
           const res = await axios.delete(url);
@@ -35,7 +35,7 @@ const ManageToolsRow = ({ tool, index, refetch, setUpdate }) => {
       <td className="text-warning font-bold">
         <label
           onClick={() => setUpdate(_id)}
-          for="tools-update"
+          htmlFor="tools-update"
           className="btn btn-xs bg-green-500 btn-accent text-white border-0"
         >
           Update

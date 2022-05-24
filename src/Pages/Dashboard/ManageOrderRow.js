@@ -2,14 +2,14 @@ import axios from "axios";
 import React from "react";
 
 const ManageOrderRow = ({ order, index, refetch }) => {
-  const { _id, toolsName, orderQuantity, price, status, paid } = order;
+  const { _id, toolsName, orderQuantity, price, status, paid,email } = order;
 
   const updateStatus = (id) => {
     const updateOrderStatus = {
       status: "Shifting",
     };
     axios
-      .put(`http://localhost:5000/order/${id}`, updateOrderStatus)
+      .put(`https://glacial-falls-86656.herokuapp.com/order/${id}`, updateOrderStatus)
       .then((res) => {
         if (res.status === 200) {
           console.log("Order Status Update successfully");
@@ -24,7 +24,7 @@ const ManageOrderRow = ({ order, index, refetch }) => {
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
       // Delete Method update using id
-      const url = `http://localhost:5000/orders/${id}`;
+      const url = `https://glacial-falls-86656.herokuapp.com/orders/${id}`;
       const addUsers = async () => {
         try {
           const res = await axios.delete(url);
@@ -46,6 +46,7 @@ const ManageOrderRow = ({ order, index, refetch }) => {
       <td title={toolsName}>
         {toolsName.length > 20 ? toolsName.slice(0, 20) + "..." : toolsName}
       </td>
+      <td>{email}</td>
       <td>{orderQuantity}</td>
       <td>${price}</td>
       <td className="text-warning font-bold">
