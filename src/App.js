@@ -17,6 +17,7 @@ import MyOrder from "./Pages/Dashboard/MyOrder";
 import ManageOrders from "./Pages/Dashboard/ManageOrders";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
 import AddTools from "./Pages/Dashboard/AddTools";
+import ManageTools from "./Pages/Dashboard/ManageTools";
 
 function App() {
   return (
@@ -87,6 +88,14 @@ function App() {
             element={
               <RequireAuth>
                 <AddTools />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route
+            path="manageTools"
+            element={
+              <RequireAuth>
+                <ManageTools />
               </RequireAuth>
             }
           ></Route>

@@ -9,12 +9,11 @@ const ManageOrderRow = ({ order, index, refetch }) => {
       status: "Shifting",
     };
     axios
-      .put(`http://localhost:5000/order/${_id}`, updateOrderStatus)
+      .put(`http://localhost:5000/order/${id}`, updateOrderStatus)
       .then((res) => {
         if (res.status === 200) {
           console.log("Your Profile Update successfully");
           refetch();
-          // Navigate("/dashboard");
         }
       })
       .catch((error) => console.log(error));
