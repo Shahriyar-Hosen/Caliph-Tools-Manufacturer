@@ -14,6 +14,7 @@ import Navbar from "./Pages/Shared/Navbar/Navbar";
 import MyProfile from "./Pages/Dashboard/MyProfile";
 import AddReviews from "./Pages/Dashboard/AddReviews";
 import MyOrder from "./Pages/Dashboard/MyOrder";
+import ManageOrders from "./Pages/Dashboard/ManageOrders";
 
 function App() {
   return (
@@ -60,6 +61,14 @@ function App() {
             element={
               <RequireAuth>
                 <AddReviews />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route
+            path="manage"
+            element={
+              <RequireAuth>
+                <ManageOrders />
               </RequireAuth>
             }
           ></Route>

@@ -8,7 +8,7 @@ const Review = ({ reviews }) => {
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
         <p>
-          {description.length > 200
+          {description?.length > 200
             ? description.slice(0, 200) + "..."
             : description}
         </p>

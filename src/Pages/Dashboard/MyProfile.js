@@ -19,7 +19,6 @@ const MyProfile = () => {
 
   // console.log(data);
   const { _id, name, img, phone, address, education } = data;
-  console.log(!phone);
 
   const ProfileSubmit = (event) => {
     event.preventDefault();
