@@ -3,15 +3,14 @@ import React from "react";
 
 const ManageToolsRow = ({ tool, index, refetch, setUpdate }) => {
     
-  const { _id, name, img, price, quantity, minOrder, description } = tool;
+  const { _id, name, price, quantity } = tool;
 
 
-  const deleteOrder = (id) => {
+  const deleteTools = (id) => {
     // Delete / DELETE Method - delete by id
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
-      // Delete Method update using id
-      const url = `http://localhost:5000/orders/${id}`;
+      const url = `http://localhost:5000/tools/${id}`;
       const addUsers = async () => {
         try {
           const res = await axios.delete(url);
@@ -44,7 +43,7 @@ const ManageToolsRow = ({ tool, index, refetch, setUpdate }) => {
       </td>
       <td>
         <button
-          onClick={() => deleteOrder(_id)}
+          onClick={() => deleteTools(_id)}
           className="btn btn-xs btn-warning hover:text-black bg-red-400 border-0 text-white"
         >
           Delete
