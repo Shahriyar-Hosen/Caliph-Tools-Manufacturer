@@ -20,7 +20,7 @@ const Dashboard = () => {
             <Link to="/dashboard/makeAdmin">Make Admin</Link>
           </li>
           <li>
-            <Link to="/dashboard/addProduct">Add A Product</Link>
+            <Link to="/dashboard/addTools">Add A Tools</Link>
           </li>
           <li>
             <Link to="/dashboard/myProfile">My Profile</Link>

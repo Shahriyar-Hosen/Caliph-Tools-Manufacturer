@@ -16,7 +16,7 @@ import AddReviews from "./Pages/Dashboard/AddReviews";
 import MyOrder from "./Pages/Dashboard/MyOrder";
 import ManageOrders from "./Pages/Dashboard/ManageOrders";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
-import AddProduct from "./Pages/Dashboard/AddProduct";
+import AddTools from "./Pages/Dashboard/AddTools";
 
 function App() {
   return (
@@ -86,7 +86,7 @@ function App() {
             path="addProduct"
             element={
               <RequireAuth>
-                <AddProduct />
+                <AddTools />
               </RequireAuth>
             }
           ></Route>
