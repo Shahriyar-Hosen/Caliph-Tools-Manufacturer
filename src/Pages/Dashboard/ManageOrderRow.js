@@ -50,7 +50,7 @@ const ManageOrderRow = ({ order, index, refetch }) => {
       <td>{orderQuantity}</td>
       <td>${price}</td>
       <td className="text-warning font-bold">
-        {!paid ? (
+        {paid ? (
           <button
             onClick={() => updateStatus(_id)}
             className={`btn btn-xs ${
@@ -66,6 +66,7 @@ const ManageOrderRow = ({ order, index, refetch }) => {
         )}
       </td>
       <td>
+        {!paid ? "" : ""}
         <button
           onClick={() => deleteOrder(_id)}
           className="btn btn-xs btn-warning hover:text-black bg-red-400 border-0 text-white"

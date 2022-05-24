@@ -6,15 +6,18 @@ const Dashboard = () => {
     <section className="min-h-screen">
       <div className=" flex justify-center items-center my-5">
         {/* menu-vertical lg: */}
-        <ul class="menu menu-horizontal bg-info bg-opacity-25 rounded-box text-secondary font-serif">
+        <ul class="menu menu-vertical md:menu-horizontal bg-info bg-opacity-25 rounded-box text-secondary font-serif">
           <li>
             <Link to="/dashboard">My Order</Link>
           </li>
           <li>
-            <Link to="/dashboard/manage">ManageOrders</Link>
+            <Link to="/dashboard/addReviews">Add A Reviews</Link>
           </li>
           <li>
-            <Link to="/dashboard/addReviews">Add A Reviews</Link>
+            <Link to="/dashboard/manage">Manage All Orders</Link>
+          </li>
+          <li>
+            <Link to="/dashboard/makeAdmin">Make Admin</Link>
           </li>
           <li>
             <Link to="/dashboard/myProfile">My Profile</Link>
