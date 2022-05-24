@@ -35,7 +35,7 @@ const AddReviews = () => {
       .post("http://localhost:5000/reviews", review)
       .then((res) => {
         if (res.status === 200) {
-          console.log("Your order is successful. Please pay");
+          console.log("Your review add successful. Thanks");
           // Navigate("/dashboard");
         }
       })

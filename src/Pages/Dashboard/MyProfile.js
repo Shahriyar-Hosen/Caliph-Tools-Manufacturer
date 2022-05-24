@@ -7,7 +7,7 @@ import Loading from "../Shared/Loading";
 
 const MyProfile = () => {
   const [user, loading] = useAuthState(auth);
-  const { email, displayName, photoURL, phoneNumber } = user;
+  const { email, displayName, photoURL } = user;
 
   const { data, isLoading, refetch } = useQuery("users", () =>
     axios.get(`http://localhost:5000/user/${email}`).then((res) => res.data)
@@ -17,10 +17,36 @@ const MyProfile = () => {
     return <Loading></Loading>;
   }
 
-  console.log(data);
-  const { name, img, phone, address, education } = data;
+  // console.log(data);
+  const { _id, name, img, phone, address, education } = data;
+  console.log(!phone);
 
-  const ProfileSubmit = (event) => {};
+  const ProfileSubmit = (event) => {
+    event.preventDefault();
+    const name = event.target.name.value;
+    const number = Number(event.target.number.value);
+    const address = event.target.address.value;
+    const education = event.target.education.value;
+    const photo = event.target.photo.value;
+
+    const updateProfile = {
+      name: name,
+      phone: number,
+      address: address,
+      education: education,
+      img: photo,
+    };
+    axios
+      .put(`http://localhost:5000/user/${_id}`, updateProfile)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("Your Profile Update successfully");
+          refetch();
+          // Navigate("/dashboard");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <div>
       <div class="text-4xl font-bold pb-10 bg-yellow-50 text-center text-info py-5">
@@ -86,7 +112,7 @@ const MyProfile = () => {
               </div>
             )}
 
-            {!phone || !phoneNumber ? (
+            {!phone ? (
               <div class="form-control">
                 <label class="label">
                   <span class="label-text">Phone</span>
@@ -103,11 +129,7 @@ const MyProfile = () => {
                 <label class="label">
                   <span class="label-text">Phone</span>
                 </label>
-                <input
-                  type="number"
-                  class="input w-full"
-                  defaultValue={phone || phoneNumber}
-                />
+                <input type="text" class="input w-full" defaultValue={phone} />
               </div>
             )}
 
@@ -160,6 +182,25 @@ const MyProfile = () => {
                 />
               </div>
             )}
+
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">
+                  <div class="indicator">
+                    <span class="indicator-item badge badge-info bg-opacity-20 border-0 text-secondary">
+                      link
+                    </span>
+                    <span>Profile Picture </span>
+                  </div>
+                </span>
+              </label>
+              <input
+                type="text"
+                name="photo"
+                placeholder="Update Your Picture"
+                class="input w-full"
+              />
+            </div>
 
             <div class="form-control ">
               <button
