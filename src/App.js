@@ -16,6 +16,7 @@ import AddReviews from "./Pages/Dashboard/AddReviews";
 import MyOrder from "./Pages/Dashboard/MyOrder";
 import ManageOrders from "./Pages/Dashboard/ManageOrders";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
+import AddProduct from "./Pages/Dashboard/AddProduct";
 
 function App() {
   return (
@@ -78,6 +79,14 @@ function App() {
             element={
               <RequireAuth>
                 <MakeAdmin />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route
+            path="addProduct"
+            element={
+              <RequireAuth>
+                <AddProduct />
               </RequireAuth>
             }
           ></Route>
