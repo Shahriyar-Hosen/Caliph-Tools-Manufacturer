@@ -5,7 +5,11 @@ import Loading from "../Shared/Loading";
 import ManageOrderRow from "./ManageOrderRow";
 
 const ManageOrders = () => {
-  const { data: orders, isLoading } = useQuery("orders", () =>
+  const {
+    data: orders,
+    isLoading,
+    refetch,
+  } = useQuery("orders", () =>
     axios.get("http://localhost:5000/orders").then((res) => res.data)
   );
 
@@ -23,7 +27,7 @@ const ManageOrders = () => {
               <th>quantity</th>
               <th>price</th>
               <th>status</th>
-              <th>info</th>
+              <th>Remove</th>
             </tr>
           </thead>
           <tbody>
@@ -32,6 +36,7 @@ const ManageOrders = () => {
                 key={order._id}
                 order={order}
                 index={index}
+                refetch={refetch}
               ></ManageOrderRow>
             ))}
           </tbody>

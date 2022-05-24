@@ -1,8 +1,31 @@
+import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const OrderRow = ({ order, index }) => {
-  const { toolsName, orderQuantity, price, status, paid } = order;
+const OrderRow = ({ order, index, refetch }) => {
+  const { _id, toolsName, orderQuantity, price, status, paid } = order;
+
+  const deleteOrder = (id) => {
+    // Delete / DELETE Method - delete by id
+    const proceed = window.confirm("Are you sure! Delete This orders");
+    if (proceed) {
+      // Delete Method update using id
+      const url = `http://localhost:5000/orders/${id}`;
+      const addUsers = async () => {
+        try {
+          const res = await axios.delete(url);
+          if (res.data.deletedCount > 0) {
+            console.log("delete done");
+            refetch();
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      addUsers();
+    }
+    // ----------------------------------------
+  };
 
   return (
     <tr>
@@ -26,7 +49,10 @@ const OrderRow = ({ order, index }) => {
       </td>
       <td>
         {!paid ? (
-          <button className="btn btn-xs btn-warning hover:text-black bg-red-400 border-0 text-white">
+          <button
+            onClick={() => deleteOrder(_id)}
+            className="btn btn-xs btn-warning hover:text-black bg-red-400 border-0 text-white"
+          >
             Delete
           </button>
         ) : (

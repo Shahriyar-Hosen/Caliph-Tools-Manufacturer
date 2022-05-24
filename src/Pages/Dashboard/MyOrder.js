@@ -5,7 +5,6 @@ import { useQuery } from "react-query";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
 import OrderRow from "./OrderRow";
-// import OrderRow from "./OrderRow";
 
 const MyOrder = () => {
   const [user, loading] = useAuthState(auth);
@@ -14,12 +13,11 @@ const MyOrder = () => {
   const {
     data: orders,
     isLoading,
+    refetch,
   } = useQuery("orders", () =>
     axios.get(`http://localhost:5000/orders/${email}`).then((res) => res.data)
   );
 
-  console.log(orders);
-  
   if (loading || isLoading) {
     return <Loading></Loading>;
   }
@@ -39,7 +37,12 @@ const MyOrder = () => {
           </thead>
           <tbody>
             {orders?.map((order, index) => (
-              <OrderRow key={order._id} order={order} index={index}></OrderRow>
+              <OrderRow
+                key={order._id}
+                order={order}
+                index={index}
+                refetch={refetch}
+              ></OrderRow>
             ))}
           </tbody>
         </table>
