@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import auth from "../../firebase.inite";
@@ -12,6 +12,12 @@ const MyProfile = () => {
   const { data, isLoading, refetch } = useQuery("users", () =>
     axios.get(`http://localhost:5000/user/${email}`).then((res) => res.data)
   );
+
+  useEffect(() => {
+    if (user) {
+      refetch();
+    }
+  }, [user, refetch]);
 
   if (loading || isLoading) {
     return <Loading></Loading>;
@@ -50,7 +56,7 @@ const MyProfile = () => {
     <div>
       <div class="text-4xl font-bold pb-10 bg-yellow-50 text-center text-info py-5">
         <h1 className="mb-8 text-4xl">My Profile</h1>
-        <div class="avatar online">
+        <div class="avatar">
           <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
             <img
               src={

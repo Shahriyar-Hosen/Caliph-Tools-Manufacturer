@@ -61,6 +61,7 @@ const AddReviews = () => {
                 min="1"
                 max="5"
                 name="retting"
+                required
                 placeholder="Retting"
                 class="input input-bordered"
               />
@@ -74,6 +75,7 @@ const AddReviews = () => {
               </label>
               <textarea
                 name="review"
+                required
                 class="textarea textarea-bordered h-24"
               ></textarea>
               <label class="label">

@@ -5,12 +5,14 @@ import {
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.inite";
+import useToken from "../../../hooks/useToken";
 import Loading from "../../Shared/Loading";
 
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [token] = useToken(user || gUser);
 
   const navigate = useNavigate();
   let location = useLocation();
@@ -19,11 +21,10 @@ const Login = () => {
   let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (user || gUser) {
-      // navigate(from, { replace: true });
-      navigate("/");
+    if (token) {
+      navigate(from, { replace: true });
     }
-  }, [user, gUser, navigate, from]);
+  }, [token, navigate, from]);
 
   if (loading || gLoading) {
     return <Loading></Loading>;

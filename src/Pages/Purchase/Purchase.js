@@ -112,6 +112,7 @@ const Purchase = () => {
       {/* Tools description*/}
       <div class="card w-full block mx-auto bg-base-100 shadow-lg mb-12">
         <div class="card-body px-14">
+          <h2 className="tex-xl font-bold">Tools Description:</h2>
           <p>{description}</p>
         </div>
       </div>

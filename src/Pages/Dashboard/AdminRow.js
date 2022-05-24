@@ -1,15 +1,20 @@
 import axios from "axios";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.inite";
+import Loading from "../Shared/Loading";
 
-const AdminRow = ({ user, refetch }) => {
-  const { _id, email, name, img, role } = user;
+const AdminRow = ({ user: dbUser, refetch }) => {
+  const [user, loading] = useAuthState(auth);
+  const { email, displayName } = user;
+  const { _id, name, img, role } = dbUser;
 
   const updateStatus = (id) => {
     const updateRole = {
       role: "Admin",
     };
     axios
-      .put(`http://localhost:5000/user/${_id}`, updateRole)
+      .put(`http://localhost:5000/user/${id}`, updateRole)
       .then((res) => {
         if (res.status === 200) {
           console.log("Your Profile Update successfully");
@@ -41,6 +46,11 @@ const AdminRow = ({ user, refetch }) => {
     }
     // ----------------------------------------
   };
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <tr>
       <th>
@@ -50,9 +60,9 @@ const AdminRow = ({ user, refetch }) => {
           </div>
         </div>
       </th>
-      <td>{name}</td>
+      <td>{name || displayName ? name || displayName : "User Name"}</td>
       <td>{email}</td>
-      <td>{role}</td>
+      <td>{role ? role : "User"}</td>
       <td className="text-warning font-bold">
         {role ? (
           <button

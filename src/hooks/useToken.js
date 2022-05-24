@@ -6,15 +6,14 @@ const useToken = (user) => {
 
   useEffect(() => {
     if (user) {
-      console.log("Inside use Token:", user);
       const email = user?.user?.email;
       const name = user?.user?.displayName;
       const img = user?.user?.photoURL;
-      const currentUser = { name: name, email: email, img: img, role: "" };
+      const currentUser = { name: name, email: email, img: img, };
       
       if (email) {
         //   update / PUT Method update using id
-        const url = `http://localhost:5000/user/${email}`;
+        const url = `http://localhost:5000/users/${email}`;
         const addUsers = async () => {
           try {
             const res = await axios.put(url, currentUser);

@@ -9,10 +9,10 @@ const MakeAdmin = () => {
     data: users,
     isLoading,
     refetch,
-  } = useQuery("users", () =>
+  } = useQuery("allUsers", () =>
     axios.get("http://localhost:5000/users").then((res) => res.data)
   );
-
+  
   if (isLoading) {
     return <Loading></Loading>;
   }
@@ -24,9 +24,9 @@ const MakeAdmin = () => {
             <tr>
               <th></th>
               <th>Name</th>
-              <th>quantity</th>
-              <th>price</th>
-              <th>status</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Make Admin</th>
               <th>Remove</th>
             </tr>
           </thead>
