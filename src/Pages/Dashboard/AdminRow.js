@@ -1,15 +1,15 @@
 import axios from "axios";
 import React from "react";
 
-const AdminRow = ({ order, index, refetch }) => {
-  const { _id, toolsName, orderQuantity, price, status, paid } = order;
+const AdminRow = ({ user, refetch }) => {
+  const { _id, email, name, img, role } = user;
 
   const updateStatus = (id) => {
-    const updateOrderStatus = {
-      status: "Shifting",
+    const updateRole = {
+      role: "Admin",
     };
     axios
-      .put(`http://localhost:5000/order/${_id}`, updateOrderStatus)
+      .put(`http://localhost:5000/user/${_id}`, updateRole)
       .then((res) => {
         if (res.status === 200) {
           console.log("Your Profile Update successfully");
@@ -25,7 +25,7 @@ const AdminRow = ({ order, index, refetch }) => {
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
       // Delete Method update using id
-      const url = `http://localhost:5000/orders/${id}`;
+      const url = `http://localhost:5000/user/${id}`;
       const addUsers = async () => {
         try {
           const res = await axios.delete(url);
@@ -43,26 +43,30 @@ const AdminRow = ({ order, index, refetch }) => {
   };
   return (
     <tr>
-      <th>{index + 1}</th>
-      <td title={toolsName}>
-        {toolsName.length > 20 ? toolsName.slice(0, 20) + "..." : toolsName}
-      </td>
-      <td>{orderQuantity}</td>
-      <td>${price}</td>
+      <th>
+        <div class="avatar">
+          <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <img src={img ? img : "https://i.ibb.co/jfZpfx0/user.jpg"} alt="" />
+          </div>
+        </div>
+      </th>
+      <td>{name}</td>
+      <td>{email}</td>
+      <td>{role}</td>
       <td className="text-warning font-bold">
-        {!paid ? (
+        {role ? (
           <button
-            onClick={() => updateStatus(_id)}
-            className={`btn btn-xs ${
-              status === "Shifting"
-                ? "bg-green-500 btn-accent"
-                : "bg-secondary btn-success"
-            }  text-white border-0`}
+            className={`btn btn-xs bg-green-500 btn-accent  text-white border-0`}
           >
-            {status}
+            {role}
           </button>
         ) : (
-          "Unpaid"
+          <button
+            onClick={() => updateStatus(_id)}
+            className={`btn btn-xs btn-secondary  text-white border-0`}
+          >
+            Make Admin
+          </button>
         )}
       </td>
       <td>

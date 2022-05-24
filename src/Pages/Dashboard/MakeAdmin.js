@@ -6,11 +6,11 @@ import AdminRow from "./AdminRow";
 
 const MakeAdmin = () => {
   const {
-    data: orders,
+    data: users,
     isLoading,
     refetch,
-  } = useQuery("orders", () =>
-    axios.get("http://localhost:5000/orders").then((res) => res.data)
+  } = useQuery("users", () =>
+    axios.get("http://localhost:5000/users").then((res) => res.data)
   );
 
   if (isLoading) {
@@ -31,10 +31,10 @@ const MakeAdmin = () => {
             </tr>
           </thead>
           <tbody>
-            {orders?.map((order, index) => (
+            {users?.map((user, index) => (
               <AdminRow
-                key={order._id}
-                order={order}
+                key={user._id}
+                user={user}
                 index={index}
                 refetch={refetch}
               ></AdminRow>
