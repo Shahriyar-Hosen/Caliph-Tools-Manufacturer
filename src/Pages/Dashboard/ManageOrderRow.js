@@ -12,7 +12,7 @@ const ManageOrderRow = ({ order, index, refetch }) => {
       .put(`http://localhost:5000/order/${id}`, updateOrderStatus)
       .then((res) => {
         if (res.status === 200) {
-          console.log("Your Profile Update successfully");
+          console.log("Order Status Update successfully");
           refetch();
         }
       })

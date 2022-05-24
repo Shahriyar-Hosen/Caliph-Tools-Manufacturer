@@ -18,7 +18,7 @@ const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
       .put(`http://localhost:5000/tools/${id}`, tools)
       .then((res) => {
         if (res.status === 200) {
-          console.log("Your Profile Update successfully");
+          console.log("Your Tools Update successfully");
           event.target.reset();
           setUpdate(null);
           refetch();
