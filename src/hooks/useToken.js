@@ -9,16 +9,18 @@ const useToken = (user) => {
       const email = user?.user?.email;
       const name = user?.user?.displayName;
       const img = user?.user?.photoURL;
-      const currentUser = { name: name, email: email, img: img, };
-      
+      const currentUser = { name: name, email: email, img: img };
+
       if (email) {
         //   update / PUT Method update using id
-        const url = `https://glacial-falls-86656.herokuapp.com/users/${email}`;
+        const url = `http://localhost:5000/users/${email}`;
         const addUsers = async () => {
           try {
             const res = await axios.put(url, currentUser);
-            //   setTool(res.data);
-            console.log(res);
+            
+            const accessToken = res.data.token;
+            localStorage.setItem("accessToken", accessToken);
+            setToken(accessToken);
           } catch (error) {
             console.error(error);
           }
