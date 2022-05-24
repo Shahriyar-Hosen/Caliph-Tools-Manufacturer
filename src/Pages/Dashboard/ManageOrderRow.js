@@ -1,9 +1,24 @@
 import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
 
 const ManageOrderRow = ({ order, index, refetch }) => {
   const { _id, toolsName, orderQuantity, price, status, paid } = order;
+
+  const updateStatus = (id) => {
+    const updateOrderStatus = {
+      status: "Shifting",
+    };
+    axios
+      .put(`http://localhost:5000/order/${_id}`, updateOrderStatus)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("Your Profile Update successfully");
+          refetch();
+          // Navigate("/dashboard");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
   const deleteOrder = (id) => {
     // Delete / DELETE Method - delete by id
@@ -34,16 +49,20 @@ const ManageOrderRow = ({ order, index, refetch }) => {
       </td>
       <td>{orderQuantity}</td>
       <td>${price}</td>
-      <td className="text-green-500">
-        {paid ? (
-          status
-        ) : (
-          <Link
-            to="/payment"
-            className="btn btn-xs btn-info bg-green-500 border-0 text-white"
+      <td className="text-warning font-bold">
+        {!paid ? (
+          <button
+            onClick={() => updateStatus(_id)}
+            className={`btn btn-xs ${
+              status === "Shifting"
+                ? "bg-green-500 btn-accent"
+                : "bg-secondary btn-success"
+            }  text-white border-0`}
           >
-            Pay
-          </Link>
+            {status}
+          </button>
+        ) : (
+          "Unpaid"
         )}
       </td>
       <td>

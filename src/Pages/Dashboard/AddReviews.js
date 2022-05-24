@@ -43,7 +43,7 @@ const AddReviews = () => {
   };
   return (
     <div>
-      <h1 class="text-4xl font-bold pb-10 bg-yellow-50 text-center text-primary py-5">
+      <h1 class="text-4xl font-bold pb-10 bg-yellow-50 text-center text-primary pt-5">
         Add A Reviews
       </h1>
       <div class="hero pb-10 bg-yellow-50">

@@ -71,7 +71,7 @@ const Purchase = () => {
       quantity,
       orderQuantity: orderQuantity,
       price: totalPrice,
-      status: "pending",
+      status: "Pending",
       paid: false,
     };
 

@@ -17,7 +17,7 @@ const ManageOrders = () => {
     return <Loading></Loading>;
   }
   return (
-    <div className="mx-3 mb-8 border-b-8 border-secondary border-double">
+    <div className="mx-3 h-full mb-8 border-b-8 border-secondary border-double">
       <div class="overflow-x-auto mb-5">
         <table class="table w-full">
           <thead>
