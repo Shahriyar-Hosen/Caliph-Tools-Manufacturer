@@ -8,7 +8,7 @@ import Loading from "../Shared/Loading";
 
 const AdminRow = ({ user: dbUser, refetch }) => {
   const [user, loading] = useAuthState(auth);
-  const { email, displayName } = user;
+  const { displayName } = user;
   const { _id, name, img, role, email: dbEmail } = dbUser;
   const navigate = useNavigate();
 

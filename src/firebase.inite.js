@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDi2XxQGsqwKH9U53ihhDViRGwW4CNUxI8",
-  authDomain: "caliph-tools-manufacturer.firebaseapp.com",
-  projectId: "caliph-tools-manufacturer",
-  storageBucket: "caliph-tools-manufacturer.appspot.com",
-  messagingSenderId: "748027602167",
-  appId: "1:748027602167:web:e8dfa42b8dcd1dd2981ff2",
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
@@ -19,3 +19,12 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 export default auth;
+
+/* 
+apiKey: "AIzaSyDi2XxQGsqwKH9U53ihhDViRGwW4CNUxI8",
+  authDomain: "caliph-tools-manufacturer.firebaseapp.com",
+  projectId: "caliph-tools-manufacturer",
+  storageBucket: "caliph-tools-manufacturer.appspot.com",
+  messagingSenderId: "748027602167",
+  appId: "1:748027602167:web:e8dfa42b8dcd1dd2981ff2",
+*/
