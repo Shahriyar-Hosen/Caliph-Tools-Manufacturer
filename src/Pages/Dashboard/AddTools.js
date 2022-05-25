@@ -26,7 +26,7 @@ const AddTools = () => {
     };
     
     axios
-      .post("http://localhost:5000/tools", tools,{
+      .post("https://glacial-falls-86656.herokuapp.com/tools", tools,{
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

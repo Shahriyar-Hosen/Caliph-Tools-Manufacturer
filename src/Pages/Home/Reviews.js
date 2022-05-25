@@ -11,7 +11,7 @@ const Reviews = () => {
   useEffect(() => {
     const reviewsData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/reviews", {
+        const res = await axios.get("https://glacial-falls-86656.herokuapp.com/reviews", {
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },

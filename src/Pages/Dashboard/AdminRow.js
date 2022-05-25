@@ -17,7 +17,7 @@ const AdminRow = ({ user: dbUser, refetch }) => {
       role: "Admin",
     };
     axios
-      .put(`http://localhost:5000/user/${id}`, updateRole, {
+      .put(`https://glacial-falls-86656.herokuapp.com/user/${id}`, updateRole, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -48,7 +48,7 @@ const AdminRow = ({ user: dbUser, refetch }) => {
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
       // Delete Method update using id
-      const url = `http://localhost:5000/user/${id}`;
+      const url = `https://glacial-falls-86656.herokuapp.com/user/${id}`;
       const addUsers = async () => {
         try {
           const res = await axios.delete(url, {

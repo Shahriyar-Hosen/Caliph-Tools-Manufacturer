@@ -14,7 +14,7 @@ const ManageOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    axios.get("http://localhost:5000/orders",{
+    axios.get("https://glacial-falls-86656.herokuapp.com/orders",{
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

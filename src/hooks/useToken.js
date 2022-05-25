@@ -17,7 +17,7 @@ const useToken = (user) => {
 
       if (email) {
         //   update / PUT Method update using id
-        const url = `http://localhost:5000/users/${email}`;
+        const url = `https://glacial-falls-86656.herokuapp.com/users/${email}`;
         const addUsers = async () => {
           try {
             const res = await axios.put(url, currentUser, {

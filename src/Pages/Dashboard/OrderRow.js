@@ -14,7 +14,7 @@ const OrderRow = ({ order, index, refetch }) => {
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
       // Delete Method update using id
-      const url = `http://localhost:5000/orders/${id}`;
+      const url = `https://glacial-falls-86656.herokuapp.com/orders/${id}`;
       const addUsers = async () => {
         try {
           const res = await axios.delete(url,{

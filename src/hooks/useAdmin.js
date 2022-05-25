@@ -7,7 +7,7 @@ const useAdmin = (user) => {
   useEffect(() => {
     const email = user?.email;
     if (email) {
-      const url = `http://localhost:5000/admin/${email}`;
+      const url = `https://glacial-falls-86656.herokuapp.com/admin/${email}`;
       fetch(url, {
         method: "GET",
         headers: {

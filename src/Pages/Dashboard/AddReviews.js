@@ -36,7 +36,7 @@ const AddReviews = () => {
     };
 
     axios
-      .post("http://localhost:5000/reviews", review, {
+      .post("https://glacial-falls-86656.herokuapp.com/reviews", review, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

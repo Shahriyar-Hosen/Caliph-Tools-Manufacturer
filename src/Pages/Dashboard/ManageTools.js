@@ -17,7 +17,7 @@ const ManageTools = () => {
     isLoading,error,
     refetch,
   } = useQuery("tools", () =>
-    axios.get("http://localhost:5000/tools",{
+    axios.get("https://glacial-falls-86656.herokuapp.com/tools",{
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

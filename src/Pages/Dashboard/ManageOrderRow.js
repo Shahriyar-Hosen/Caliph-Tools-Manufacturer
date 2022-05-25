@@ -16,7 +16,7 @@ const ManageOrderRow = ({ order, index, refetch }) => {
       status: "Shifting",
     };
     axios
-      .put(`http://localhost:5000/order/${id}`, updateOrderStatus, {
+      .put(`https://glacial-falls-86656.herokuapp.com/order/${id}`, updateOrderStatus, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -47,7 +47,7 @@ const ManageOrderRow = ({ order, index, refetch }) => {
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
       // Delete Method update using id
-      const url = `http://localhost:5000/orders/${id}`;
+      const url = `https://glacial-falls-86656.herokuapp.com/orders/${id}`;
       const addUsers = async () => {
         try {
           const res = await axios.delete(url, {

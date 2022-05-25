@@ -11,7 +11,7 @@ const MakeAdmin = () => {
     refetch,
   } = useQuery("allUsers", () =>
     axios
-      .get("http://localhost:5000/users", {
+      .get("https://glacial-falls-86656.herokuapp.com/users", {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

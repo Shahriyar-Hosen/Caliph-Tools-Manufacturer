@@ -12,7 +12,7 @@ const Tools = () => {
   useEffect(() => {
     const toolsDataLoad = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/tools",{
+        const res = await axios.get("https://glacial-falls-86656.herokuapp.com/tools",{
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },

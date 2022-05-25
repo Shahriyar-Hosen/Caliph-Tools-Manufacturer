@@ -14,7 +14,7 @@ const MyProfile = () => {
 
   const { data, isLoading, refetch } = useQuery("users", () =>
     axios
-      .get(`http://localhost:5000/user/${email}`, {
+      .get(`https://glacial-falls-86656.herokuapp.com/user/${email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -58,7 +58,7 @@ const MyProfile = () => {
       img: photo,
     };
     axios
-      .put(`http://localhost:5000/user/${_id}`, updateProfile, {
+      .put(`https://glacial-falls-86656.herokuapp.com/user/${_id}`, updateProfile, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

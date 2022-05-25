@@ -20,7 +20,7 @@ const MyOrder = () => {
     refetch,
   } = useQuery("myOrders", () =>
     axios
-      .get(`http://localhost:5000/orders/${email}`, {
+      .get(`https://glacial-falls-86656.herokuapp.com/orders/${email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -43,7 +43,7 @@ const MyOrder = () => {
     }
     console.log(error.message);
   }
-  
+
   if (loading || isLoading) {
     return <Loading></Loading>;
   }

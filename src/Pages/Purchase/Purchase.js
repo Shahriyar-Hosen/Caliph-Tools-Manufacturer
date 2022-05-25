@@ -21,7 +21,7 @@ const Purchase = () => {
   useEffect(() => {
     const toolData = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/tools/${id}`, {
+        const res = await axios.get(`https://glacial-falls-86656.herokuapp.com/tools/${id}`, {
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
@@ -81,7 +81,7 @@ const Purchase = () => {
     };
 
     axios
-      .post("http://localhost:5000/orders", order, {
+      .post("https://glacial-falls-86656.herokuapp.com/orders", order, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

@@ -20,7 +20,7 @@ const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
     console.log("tools", tools);
 
     axios
-      .put(`http://localhost:5000/tools/${id}`, tools,{
+      .put(`https://glacial-falls-86656.herokuapp.com/tools/${id}`, tools,{
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
