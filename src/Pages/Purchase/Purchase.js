@@ -1,4 +1,5 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,28 +9,37 @@ import Loading from "../Shared/Loading";
 const Purchase = () => {
   const { id } = useParams();
   const [user] = useAuthState(auth);
-  const navigate = useNavigate();
 
   const [tool, setTool] = useState([]);
-  const [orderQuantity, setOrderQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [quantityValue, setQuantityValue] = useState(0);
+  const [orderQuantity, setOrderQuantity] = useState(0);
   const [agree, setAgree] = useState(true);
+
+  const navigate = useNavigate();
 
   // Read / Get Method - Read by ID
   useEffect(() => {
     const toolData = async () => {
       try {
-        const res = await axios.get(`https://glacial-falls-86656.herokuapp.com/tools/${id}`);
+        const res = await axios.get(`http://localhost:5000/tools/${id}`, {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        });
         setTool(res.data);
         setOrderQuantity(res.data.minOrder);
         setTotalPrice(res.data.minOrder * res.data.price);
       } catch (error) {
-        console.error(error);
+        if (error.response.status === 401 || error.response.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        console.log(error.massage);
       }
     };
     toolData();
-  }, [id]);
+  }, [id, navigate]);
   // ----------------------------------------
 
   const { name, img, price, quantity, minOrder, description } = tool;
@@ -49,15 +59,10 @@ const Purchase = () => {
     return <Loading></Loading>;
   }
 
-  const updateQuantity = (value) => {
-    if (orderQuantity + value >= minOrder && quantity >= orderQuantity) {
-      setOrderQuantity(orderQuantity + value);
-    }
-  };
-
   const orderForm = (event) => {
     event.preventDefault();
     const address = event.target.address.value;
+    const inputQuantity = event.target.quantity.value;
     const phone = Number(event.target.phone.value);
 
     const order = {
@@ -69,21 +74,38 @@ const Purchase = () => {
       address: address,
       toolsName: name,
       quantity,
-      orderQuantity: orderQuantity,
+      orderQuantity: inputQuantity,
       price: totalPrice,
       status: "Pending",
       paid: false,
     };
 
     axios
-      .post("https://glacial-falls-86656.herokuapp.com/orders", order)
+      .post("http://localhost:5000/orders", order, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
       .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
         if (res.status === 200) {
           console.log("Your order is successful. Please pay");
-          navigate("/dashboard");
+          navigate("/dashboard/myOrders");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        
+        if (error.response.status === 401 || error.response.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        console.log(error.massage);
+      });
   };
   return (
     <div>
@@ -186,41 +208,22 @@ const Purchase = () => {
                 <label className="label">
                   <span className="label-text">Quantity</span>
                 </label>
-                <div className="w-full py-3 border-2 rounded-lg text-center">
-                  Total Quantity:{" "}
-                  <span className="font-bold">{orderQuantity}</span>
-                </div>
+                <input
+                  type="Number"
+                  name="quantity"
+                  min={minOrder}
+                  max={quantity}
+                  placeholder="Add Quantity"
+                  className="input input-bordered"
+                  onBlur={(e) => setOrderQuantity(e.target.value)}
+                  required
+                />
+                <label className="label">
+                  <span className="label-text">Minimum: {minOrder} </span>
+                  <span className="label-text">Maximum: {quantity}</span>
+                </label>
               </div>
 
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Enter Quantity</span>
-                </label>
-                <label className="flex justify-between items-center">
-                  <input
-                    type="number"
-                    placeholder="Quantity"
-                    disabled
-                    className="input input-bordered w-full mx-1"
-                    defaultValue={minOrder}
-                  />
-                  +
-                  <input
-                    type="text"
-                    placeholder="Quantity"
-                    name="quantity"
-                    className="input input-bordered w-full mx-1"
-                    defaultValue={orderQuantity}
-                    onBlur={(e) => setQuantityValue(Number(e.target.value))}
-                  />
-                  <span
-                    onClick={() => updateQuantity(quantityValue)}
-                    className=" font-bold text-secondary bg-accent bg-opacity-50  py-3 rounded-lg px-4"
-                  >
-                    Ok
-                  </span>
-                </label>
-              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Total Price</span>

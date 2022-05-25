@@ -1,7 +1,17 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.inite";
+import useAdmin from "../../hooks/useAdmin";
+import Loading from "../Shared/Loading";
 
 const ToolsCard = ({ tools }) => {
+  const [user, loading] = useAuthState(auth);
+  const [admin] = useAdmin(user);
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
   const { _id, name, img, description, minOrder, quantity, price } = tools;
   return (
     <div>
@@ -23,7 +33,7 @@ const ToolsCard = ({ tools }) => {
           <p>Minimum order quantity: {minOrder}</p>
           <div className="card-actions justify-center mt-2">
             <Link
-              to={`/purchase${_id}`}
+              to={admin ? "/dashboard" : `/purchase${_id}`}
               className="btn bg-gradient-to-r from-accent  to-success border-0 text-white"
             >
               Buy Now

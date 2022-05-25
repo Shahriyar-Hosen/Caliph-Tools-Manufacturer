@@ -1,7 +1,9 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
 import OrderRow from "./OrderRow";
@@ -9,17 +11,39 @@ import OrderRow from "./OrderRow";
 const MyOrder = () => {
   const [user, loading] = useAuthState(auth);
   const { email } = user;
+  const navigate = useNavigate();
 
   const {
     data: orders,
+    error,
     isLoading,
     refetch,
   } = useQuery("myOrders", () =>
     axios
-      .get(`https://glacial-falls-86656.herokuapp.com/orders/${email}`)
-      .then((res) => res.data)
+      .get(`http://localhost:5000/orders/${email}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        return res.data;
+      })
   );
 
+  if (error) {
+    if (error.response.status === 401 || error.response.status === 403) {
+      signOut(auth);
+      localStorage.removeItem("accessToken");
+      navigate("/login");
+    }
+    console.log(error.message);
+  }
+  
   if (loading || isLoading) {
     return <Loading></Loading>;
   }

@@ -1,8 +1,12 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import auth from "../firebase.inite";
 
 const useToken = (user) => {
   const [token, setToken] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -16,20 +20,31 @@ const useToken = (user) => {
         const url = `http://localhost:5000/users/${email}`;
         const addUsers = async () => {
           try {
-            const res = await axios.put(url, currentUser);
-            
+            const res = await axios.put(url, currentUser, {
+              headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              },
+            });
             const accessToken = res.data.token;
             localStorage.setItem("accessToken", accessToken);
             setToken(accessToken);
           } catch (error) {
-            console.error(error);
+            if (
+              error.response.status === 401 ||
+              error.response.status === 403
+            ) {
+              signOut(auth);
+              localStorage.removeItem("accessToken");
+              navigate("/login");
+            }
+            console.log(error.massage);
           }
         };
         addUsers();
         // ------------------------------------
       }
     }
-  }, [user]);
+  }, [user, navigate]);
 
   return [token];
 };

@@ -12,6 +12,11 @@ const Navbar = () => {
     return <Loading></Loading>;
   }
 
+  const logout = () => {
+    localStorage.removeItem("accessToken")
+    signOut(auth);
+  };
+
   const menu = (
     <>
       <li>
@@ -28,7 +33,11 @@ const Navbar = () => {
   const profile = (
     <>
       <li>
-        <Link to="/dashboard/myProfile" className="justify-between">
+        <Link
+          to="/dashboard
+        "
+          className="justify-between"
+        >
           Profile
           <span className="badge badge-info text-white">New</span>
         </Link>
@@ -38,7 +47,7 @@ const Navbar = () => {
       </li>
       <li>
         {user ? (
-          <Link to="/login" onClick={() => signOut(auth)}>
+          <Link to="/login" onClick={() => logout()}>
             Logout
           </Link>
         ) : (

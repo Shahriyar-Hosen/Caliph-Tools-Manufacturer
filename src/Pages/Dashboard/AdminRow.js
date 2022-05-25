@@ -1,28 +1,46 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
 
 const AdminRow = ({ user: dbUser, refetch }) => {
   const [user, loading] = useAuthState(auth);
   const { email, displayName } = user;
-  const { _id, name, img, role } = dbUser;
+  const { _id, name, img, role, email: dbEmail } = dbUser;
+  const navigate = useNavigate();
 
   const updateStatus = (id) => {
     const updateRole = {
       role: "Admin",
     };
     axios
-      .put(`https://glacial-falls-86656.herokuapp.com/user/${id}`, updateRole)
+      .put(`http://localhost:5000/user/${id}`, updateRole, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
       .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
         if (res.status === 200) {
           console.log("Your Profile Update successfully");
           refetch();
-          // Navigate("/dashboard");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        console.log(error.massage);
+      });
   };
 
   const deleteOrder = (id) => {
@@ -30,16 +48,25 @@ const AdminRow = ({ user: dbUser, refetch }) => {
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
       // Delete Method update using id
-      const url = `https://glacial-falls-86656.herokuapp.com/user/${id}`;
+      const url = `http://localhost:5000/user/${id}`;
       const addUsers = async () => {
         try {
-          const res = await axios.delete(url);
+          const res = await axios.delete(url, {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          });
           if (res.data.deletedCount > 0) {
             console.log("delete done");
             refetch();
           }
         } catch (error) {
-          console.error(error);
+          if (error.response.status === 401 || error.response.status === 403) {
+            signOut(auth);
+            localStorage.removeItem("accessToken");
+            navigate("/login");
+          }
+          console.log(error.massage);
         }
       };
       addUsers();
@@ -61,8 +88,8 @@ const AdminRow = ({ user: dbUser, refetch }) => {
         </div>
       </th>
       <td>{name || displayName ? name || displayName : "User Name"}</td>
-      <td>{email}</td>
-      <td>{role ? role : "User"}</td>
+      <td>{dbEmail}</td>
+      <td>{role ? "" : "User"}</td>
       <td className="text-warning font-bold">
         {role ? (
           <button

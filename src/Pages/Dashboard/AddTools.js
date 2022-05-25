@@ -1,7 +1,12 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import auth from "../../firebase.inite";
 
 const AddTools = () => {
+  const navigate = useNavigate();
+
   const reviewSubmit = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
@@ -21,14 +26,30 @@ const AddTools = () => {
     };
     
     axios
-      .post("https://glacial-falls-86656.herokuapp.com/tools", tools)
+      .post("http://localhost:5000/tools", tools,{
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
       .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
         if (res.status === 200) {
           console.log("Your review add successful. Thanks");
           event.target.reset();
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        console.log(error.massage);
+      });
   };
   return (
     <div>
@@ -98,7 +119,7 @@ const AddTools = () => {
                 type="text"
                 name="img"
                 required
-                placeholder="images"
+                placeholder="Images Link"
                 className="input input-bordered"
               />
             </div>

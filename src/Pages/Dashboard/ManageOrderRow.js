@@ -1,22 +1,45 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import auth from "../../firebase.inite";
 
 const ManageOrderRow = ({ order, index, refetch }) => {
-  const { _id, toolsName, orderQuantity, price, status, paid,email } = order;
+  const { _id, toolsName, orderQuantity, price, status, paid, email } = order;
+  const navigate = useNavigate();
 
   const updateStatus = (id) => {
+    if (status === "Shifting") {
+      return;
+    }
     const updateOrderStatus = {
       status: "Shifting",
     };
     axios
-      .put(`https://glacial-falls-86656.herokuapp.com/order/${id}`, updateOrderStatus)
+      .put(`http://localhost:5000/order/${id}`, updateOrderStatus, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
       .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
         if (res.status === 200) {
           console.log("Order Status Update successfully");
           refetch();
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        console.log(error.massage);
+      });
   };
 
   const deleteOrder = (id) => {
@@ -24,16 +47,25 @@ const ManageOrderRow = ({ order, index, refetch }) => {
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
       // Delete Method update using id
-      const url = `https://glacial-falls-86656.herokuapp.com/orders/${id}`;
+      const url = `http://localhost:5000/orders/${id}`;
       const addUsers = async () => {
         try {
-          const res = await axios.delete(url);
+          const res = await axios.delete(url, {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          });
           if (res.data.deletedCount > 0) {
             console.log("delete done");
             refetch();
           }
         } catch (error) {
-          console.error(error);
+          if (error.response.status === 401 || error.response.status === 403) {
+            signOut(auth);
+            localStorage.removeItem("accessToken");
+            navigate("/login");
+          }
+          console.log(error.massage);
         }
       };
       addUsers();

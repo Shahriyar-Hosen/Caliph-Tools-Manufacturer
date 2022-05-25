@@ -1,22 +1,46 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
+import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
 import ManageToolsRow from "./ManageToolsRow";
 import ToolsUpdate from "./ToolsUpdate";
 
 const ManageTools = () => {
   const [update, setUpdate] = useState(null);
+  const navigate = useNavigate();
+  
   const {
     data: tools,
-    isLoading,
+    isLoading,error,
     refetch,
   } = useQuery("tools", () =>
-    axios
-      .get("https://glacial-falls-86656.herokuapp.com/tools")
-      .then((res) => res.data)
+    axios.get("http://localhost:5000/tools",{
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => {
+      if (res.status === 401 || res.status === 403) {
+        signOut(auth);
+        localStorage.removeItem("accessToken");
+        navigate("/login");
+      }
+      return res.data;
+    })
   );
 
+  
+  if (error) {
+    if (error.response.status === 401 || error.response.status === 403) {
+      signOut(auth);
+      localStorage.removeItem("accessToken");
+      navigate("/login");
+    }
+    console.log(error.message);
+  }
+  
   if (isLoading) {
     return <Loading></Loading>;
   }

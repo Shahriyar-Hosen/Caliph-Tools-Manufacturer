@@ -1,20 +1,34 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import auth from "../../firebase.inite";
 import ToolsCard from "./ToolsCard";
 
 const Tools = () => {
   const [tools, setTools] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const toolsDataLoad = async () => {
       try {
-        const res = await axios.get("https://glacial-falls-86656.herokuapp.com/tools");
+        const res = await axios.get("http://localhost:5000/tools",{
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        });
         setTools(res.data);
       } catch (error) {
-        console.error(error);
+        if (error.response.status === 401 || error.response.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        console.log(error.massage);
       }
     };
     toolsDataLoad();
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="my-20">

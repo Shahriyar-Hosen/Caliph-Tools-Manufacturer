@@ -1,16 +1,32 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
 
 const MyProfile = () => {
   const [user, loading] = useAuthState(auth);
   const { email, displayName, photoURL } = user;
+  const navigate = useNavigate();
 
   const { data, isLoading, refetch } = useQuery("users", () =>
-    axios.get(`https://glacial-falls-86656.herokuapp.com/user/${email}`).then((res) => res.data)
+    axios
+      .get(`http://localhost:5000/user/${email}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        return res.data;
+      })
   );
 
   useEffect(() => {
@@ -42,15 +58,25 @@ const MyProfile = () => {
       img: photo,
     };
     axios
-      .put(`https://glacial-falls-86656.herokuapp.com/user/${_id}`, updateProfile)
+      .put(`http://localhost:5000/user/${_id}`, updateProfile, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
       .then((res) => {
         if (res.status === 200) {
           console.log("Your Profile Update successfully");
           refetch();
-          // Navigate("/dashboard");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        console.log(error.massage);
+      });
   };
   return (
     <div>
@@ -134,7 +160,12 @@ const MyProfile = () => {
                 <label className="label">
                   <span className="label-text">Phone</span>
                 </label>
-                <input type="text" className="input w-full" defaultValue={phone} />
+                <input
+                  type="text"
+                  name="number"
+                  className="input w-full"
+                  defaultValue={phone}
+                />
               </div>
             )}
 
@@ -157,6 +188,7 @@ const MyProfile = () => {
                 </label>
                 <input
                   type="text"
+                  name="address"
                   className="input w-full"
                   defaultValue={address}
                 />
@@ -182,6 +214,7 @@ const MyProfile = () => {
                 </label>
                 <input
                   type="text"
+                  name="education"
                   className="input w-full"
                   defaultValue={education}
                 />

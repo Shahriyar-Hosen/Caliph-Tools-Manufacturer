@@ -1,18 +1,31 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
+import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
 import ManageOrderRow from "./ManageOrderRow";
 
 const ManageOrders = () => {
+  const navigate = useNavigate();
   const {
     data: orders,
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    axios
-      .get("https://glacial-falls-86656.herokuapp.com/orders")
-      .then((res) => res.data)
+    axios.get("http://localhost:5000/orders",{
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => {
+      if (res.status === 401 || res.status === 403) {
+        signOut(auth);
+        localStorage.removeItem("accessToken");
+        navigate("/login");
+      }
+      return res.data;
+    })
   );
 
   if (isLoading) {

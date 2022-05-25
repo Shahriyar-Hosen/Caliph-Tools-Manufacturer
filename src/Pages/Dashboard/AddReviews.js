@@ -1,4 +1,5 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
@@ -35,14 +36,30 @@ const AddReviews = () => {
     };
 
     axios
-      .post("https://glacial-falls-86656.herokuapp.com/reviews", review)
+      .post("http://localhost:5000/reviews", review, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
       .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
         if (res.status === 200) {
           console.log("Your review add successful. Thanks");
           navigate("/dashboard");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        console.log(error.massage);
+      });
   };
   return (
     <div>
@@ -69,7 +86,9 @@ const AddReviews = () => {
                 className="input input-bordered"
               />
               <label className="label">
-                <span className="label-text">Give a rating between 1 and 5</span>
+                <span className="label-text">
+                  Give a rating between 1 and 5
+                </span>
               </label>
             </div>
             <div className="form-control">
@@ -82,7 +101,9 @@ const AddReviews = () => {
                 className="textarea textarea-bordered h-24"
               ></textarea>
               <label className="label">
-                <span className="label-text">Please review within 300 words</span>
+                <span className="label-text">
+                  Please review within 300 words
+                </span>
               </label>
             </div>
             <div className="form-control ">

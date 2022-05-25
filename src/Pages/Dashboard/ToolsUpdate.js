@@ -1,7 +1,12 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import auth from "../../firebase.inite";
 
 const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
+  const navigate = useNavigate();
+
   const updateTool = (event) => {
     event.preventDefault();
     const quantity = Number(event.target.quantity.value);
@@ -15,8 +20,17 @@ const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
     console.log("tools", tools);
 
     axios
-      .put(`https://glacial-falls-86656.herokuapp.com/tools/${id}`, tools)
+      .put(`http://localhost:5000/tools/${id}`, tools,{
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
       .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
         if (res.status === 200) {
           console.log("Your Tools Update successfully");
           event.target.reset();
@@ -24,7 +38,14 @@ const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
           refetch();
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        console.log(error.massage);
+      });
   };
 
   return (

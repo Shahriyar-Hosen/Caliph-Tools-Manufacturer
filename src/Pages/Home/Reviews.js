@@ -1,21 +1,34 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import auth from "../../firebase.inite";
 import Review from "./Review";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const reviewsData = async () => {
       try {
-        const res = await axios.get("https://glacial-falls-86656.herokuapp.com/reviews");
+        const res = await axios.get("http://localhost:5000/reviews", {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        });
         setReviews(res.data);
       } catch (error) {
-        console.error(error);
+        if (error.response.status === 401 || error.response.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        console.log(error.massage);
       }
     };
     reviewsData();
-  }, []);
-  
+  }, [navigate]);
+
   return (
     <div className="mb-20">
       <h1 className="text-primary text-4xl font-bold text-center mb-5">
