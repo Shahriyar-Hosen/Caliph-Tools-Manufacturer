@@ -60,7 +60,7 @@ const Carousel = () => {
                   tools is important
                 </p>
                 <div className="card-actions justify-end">
-                  <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase</button>
+                  <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase Now</button>
                 </div>
               </div>
             </div>
@@ -84,7 +84,7 @@ const Carousel = () => {
                   exporter
                 </p>
                 <div className="card-actions justify-end">
-                  <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase</button>
+                  <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase Now</button>
                 </div>
               </div>
             </div>
@@ -108,7 +108,7 @@ const Carousel = () => {
                   Serving the market from last 40 years.
                 </p>
                 <div className="card-actions justify-end">
-                  <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase</button>
+                  <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase Now</button>
                 </div>
               </div>
             </div>
@@ -132,7 +132,7 @@ const Carousel = () => {
                   joint venture for catering the Bangladeshi market.
                 </p>
                 <div className="card-actions justify-end">
-                  <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase</button>
+                  <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase Now</button>
                 </div>
               </div>
             </div>
@@ -155,7 +155,7 @@ const Carousel = () => {
                   Explore Promising Business Opportunities
                 </p>
                 <div className="card-actions justify-end">
-                  <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase</button>
+                  <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white">Purchase Now</button>
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ToolsCard = ({ tools, admin}) => {
+const ToolsCard = ({ tools, admin }) => {
   const { _id, name, img, description, minOrder, quantity, price } = tools;
   return (
     <div>
@@ -18,12 +18,32 @@ const ToolsCard = ({ tools, admin}) => {
               ? description.slice(0, 100) + "..."
               : description}
           </p>
-          <p>Price: ${price}</p>
-          <p>Quantity: {quantity}</p>
-          <p>Minimum order quantity: {minOrder}</p>
+          <div className="flex justify-evenly border-2 p-2 border-green-300 rounded-xl font-serif">
+            <div>
+              <div>
+                <p className="text-green-700 font-bold border-b border-success  text-lg  mb-1">
+                  Price
+                </p>{" "}
+                <p className="font-sans text-center"> ${price}</p>
+              </div>
+            </div>
+            <div>
+              <p className="text-green-700 font-bold border-b border-success text-center  text-lg mb-1">
+                Quantity
+              </p>
+              <p className="font">
+                Available:{" "}
+                <span className="font-sans">{quantity}</span>
+              </p>
+              <p>
+                Minimum:{" "}
+                <span className="font-sans">{minOrder}</span>
+              </p>
+            </div>
+          </div>
           <div className="card-actions justify-center mt-2">
             <Link
-              to={admin ?"/dashboard/manageOrders":`/purchase${_id}`}
+              to={admin ? "/dashboard/manageOrders" : `/purchase${_id}`}
               className="btn bg-gradient-to-r from-accent  to-success border-0 text-white"
             >
               Buy Now

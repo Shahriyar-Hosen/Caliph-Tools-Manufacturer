@@ -124,10 +124,17 @@ const Purchase = () => {
           {/* Tools info */}
           <div className="text-center lg:text-left lg:ml-16">
             <h1 className="text-2xl font-bold">{name}</h1>
-            <div className="py-6">
-              <p>Price: ${price}</p>
-              <p>Quantity: {quantity}</p>
-              <p>Minimum order quantity: {minOrder}</p>
+            <div className="py-6 font-sans font-semibold ">
+              <p>
+                Price: <span className="text-green-600"> ${price}</span>
+              </p>
+              <p>
+                Quantity: <span className="text-green-600">{quantity}</span>
+              </p>
+              <p>
+                Minimum order quantity:{" "}
+                <span className="text-green-600">{minOrder}</span>
+              </p>
             </div>
           </div>
         </div>
