@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
+import { toast } from "react-toastify";
 
 const Purchase = () => {
   const { id } = useParams();
@@ -38,7 +39,7 @@ const Purchase = () => {
           localStorage.removeItem("accessToken");
           navigate("/login");
         }
-        console.log(error.massage);
+        toast.error(error.massage);
       }
     };
     toolData();
@@ -95,7 +96,7 @@ const Purchase = () => {
           navigate("/login");
         }
         if (res.status === 200) {
-          console.log("Your order is successful. Please pay");
+          toast.success("Your order is successful. Please pay");
           navigate("/dashboard/myOrders");
         }
       })
@@ -105,7 +106,7 @@ const Purchase = () => {
           localStorage.removeItem("accessToken");
           navigate("/login");
         }
-        console.log(error.massage);
+        toast.error(error.massage);
       });
   };
   return (

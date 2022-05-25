@@ -7,40 +7,43 @@ import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
 import ManageToolsRow from "./ManageToolsRow";
 import ToolsUpdate from "./ToolsUpdate";
+import { toast } from "react-toastify";
 
 const ManageTools = () => {
   const [update, setUpdate] = useState(null);
   const navigate = useNavigate();
-  
+
   const {
     data: tools,
-    isLoading,error,
+    isLoading,
+    error,
     refetch,
   } = useQuery("tools", () =>
-    axios.get("https://glacial-falls-86656.herokuapp.com/tools",{
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => {
-      if (res.status === 401 || res.status === 403) {
-        signOut(auth);
-        localStorage.removeItem("accessToken");
-        navigate("/login");
-      }
-      return res.data;
-    })
+    axios
+      .get("https://glacial-falls-86656.herokuapp.com/tools", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        return res.data;
+      })
   );
 
-  
   if (error) {
     if (error.response.status === 401 || error.response.status === 403) {
       signOut(auth);
       localStorage.removeItem("accessToken");
       navigate("/login");
     }
-    console.log(error.message);
+    toast.error(error.message);
   }
-  
+
   if (isLoading) {
     return <Loading></Loading>;
   }

@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
+import { toast } from "react-toastify";
 
 const ManageOrderRow = ({ order, index, refetch }) => {
   const { _id, toolsName, orderQuantity, price, status, paid, email } = order;
@@ -16,11 +17,15 @@ const ManageOrderRow = ({ order, index, refetch }) => {
       status: "Shifting",
     };
     axios
-      .put(`https://glacial-falls-86656.herokuapp.com/order/${id}`, updateOrderStatus, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
+      .put(
+        `https://glacial-falls-86656.herokuapp.com/order/${id}`,
+        updateOrderStatus,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           signOut(auth);
@@ -28,7 +33,7 @@ const ManageOrderRow = ({ order, index, refetch }) => {
           navigate("/login");
         }
         if (res.status === 200) {
-          console.log("Order Status Update successfully");
+          toast.success("Order Status Update successfully");
           refetch();
         }
       })
@@ -38,17 +43,16 @@ const ManageOrderRow = ({ order, index, refetch }) => {
           localStorage.removeItem("accessToken");
           navigate("/login");
         }
-        console.log(error.massage);
+        toast.error(error.massage);
       });
   };
 
   const deleteOrder = (id) => {
-    // Delete / DELETE Method - delete by id
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
       // Delete Method update using id
       const url = `https://glacial-falls-86656.herokuapp.com/orders/${id}`;
-      const addUsers = async () => {
+      const orderDelete = async () => {
         try {
           const res = await axios.delete(url, {
             headers: {
@@ -56,7 +60,7 @@ const ManageOrderRow = ({ order, index, refetch }) => {
             },
           });
           if (res.data.deletedCount > 0) {
-            console.log("delete done");
+            toast("Delete order");
             refetch();
           }
         } catch (error) {
@@ -65,10 +69,10 @@ const ManageOrderRow = ({ order, index, refetch }) => {
             localStorage.removeItem("accessToken");
             navigate("/login");
           }
-          console.log(error.massage);
+          toast.error(error.massage);
         }
       };
-      addUsers();
+      orderDelete();
     }
     // ----------------------------------------
   };

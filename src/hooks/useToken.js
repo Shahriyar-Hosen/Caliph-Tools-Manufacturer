@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import auth from "../firebase.inite";
+import { toast } from 'react-toastify';
 
 const useToken = (user) => {
   const [token, setToken] = useState("");
@@ -37,7 +38,7 @@ const useToken = (user) => {
               localStorage.removeItem("accessToken");
               navigate("/login");
             }
-            console.log(error.massage);
+            toast(error.massage);
           }
         };
         addUsers();

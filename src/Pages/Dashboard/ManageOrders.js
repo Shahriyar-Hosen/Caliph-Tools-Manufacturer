@@ -14,18 +14,20 @@ const ManageOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    axios.get("https://glacial-falls-86656.herokuapp.com/orders",{
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => {
-      if (res.status === 401 || res.status === 403) {
-        signOut(auth);
-        localStorage.removeItem("accessToken");
-        navigate("/login");
-      }
-      return res.data;
-    })
+    axios
+      .get("https://glacial-falls-86656.herokuapp.com/orders", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/login");
+        }
+        return res.data;
+      })
   );
 
   if (isLoading) {

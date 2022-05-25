@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
+import { toast } from 'react-toastify';
 
 const AddTools = () => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const AddTools = () => {
           navigate("/login");
         }
         if (res.status === 200) {
-          console.log("Your review add successful. Thanks");
+          toast("Your review add successful. Thanks");
           event.target.reset();
         }
       })
@@ -48,7 +49,7 @@ const AddTools = () => {
           localStorage.removeItem("accessToken");
           navigate("/login");
         }
-        console.log(error.massage);
+        toast.error(error.massage);
       });
   };
   return (

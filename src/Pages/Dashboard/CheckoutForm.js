@@ -1,6 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const CheckoutForm = ({ order }) => {
   const stripe = useStripe();
@@ -90,11 +91,9 @@ const CheckoutForm = ({ order }) => {
         .then((res) => res.json())
         .then((data) => {
           setProcessing(false);
-          console.log(data);
           if (data.acknowledged) {
             navigate("/dashboard/myOrders");
-            // toast.success("Congrats! Your payment is completed.");
-            console.log("Congrats! Your payment is completed.");
+            toast.success("Congrats! Your payment is completed.");
           }
         });
     }

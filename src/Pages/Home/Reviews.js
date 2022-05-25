@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Review from "./Review";
+import { toast } from "react-toastify";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -11,11 +12,14 @@ const Reviews = () => {
   useEffect(() => {
     const reviewsData = async () => {
       try {
-        const res = await axios.get("https://glacial-falls-86656.herokuapp.com/reviews", {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        });
+        const res = await axios.get(
+          "https://glacial-falls-86656.herokuapp.com/reviews",
+          {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
         setReviews(res.data);
       } catch (error) {
         if (error.response.status === 401 || error.response.status === 403) {
@@ -23,7 +27,7 @@ const Reviews = () => {
           localStorage.removeItem("accessToken");
           navigate("/login");
         }
-        console.log(error.massage);
+        toast.error(error.massage);
       }
     };
     reviewsData();

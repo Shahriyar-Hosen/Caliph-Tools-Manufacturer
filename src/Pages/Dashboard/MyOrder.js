@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
 import OrderRow from "./OrderRow";
+import { toast } from "react-toastify";
 
 const MyOrder = () => {
   const [user, loading] = useAuthState(auth);
@@ -41,7 +42,7 @@ const MyOrder = () => {
       localStorage.removeItem("accessToken");
       navigate("/login");
     }
-    console.log(error.message);
+    toast.error(error.message);
   }
 
   if (loading || isLoading) {

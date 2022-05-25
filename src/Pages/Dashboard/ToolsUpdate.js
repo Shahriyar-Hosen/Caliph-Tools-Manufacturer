@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
+import { toast } from "react-toastify";
 
 const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
   const navigate = useNavigate();
@@ -17,10 +18,8 @@ const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
       price: price,
     };
 
-    console.log("tools", tools);
-
     axios
-      .put(`https://glacial-falls-86656.herokuapp.com/tools/${id}`, tools,{
+      .put(`https://glacial-falls-86656.herokuapp.com/tools/${id}`, tools, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -32,7 +31,7 @@ const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
           navigate("/login");
         }
         if (res.status === 200) {
-          console.log("Your Tools Update successfully");
+          toast.success("Your Tools Update successfully");
           event.target.reset();
           setUpdate(null);
           refetch();
@@ -44,7 +43,7 @@ const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
           localStorage.removeItem("accessToken");
           navigate("/login");
         }
-        console.log(error.massage);
+        toast.error(error.massage);
       });
   };
 

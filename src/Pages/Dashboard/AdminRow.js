@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
+import { toast } from 'react-toastify';
 
 const AdminRow = ({ user: dbUser, refetch }) => {
   const [user, loading] = useAuthState(auth);
@@ -29,7 +30,7 @@ const AdminRow = ({ user: dbUser, refetch }) => {
           navigate("/login");
         }
         if (res.status === 200) {
-          console.log("Your Profile Update successfully");
+          toast("Your Profile Update successfully");
           refetch();
         }
       })
@@ -39,17 +40,16 @@ const AdminRow = ({ user: dbUser, refetch }) => {
           localStorage.removeItem("accessToken");
           navigate("/login");
         }
-        console.log(error.massage);
+        toast.error(error.massage);
       });
   };
 
   const deleteOrder = (id) => {
-    // Delete / DELETE Method - delete by id
     const proceed = window.confirm("Are you sure! Delete This orders");
     if (proceed) {
       // Delete Method update using id
       const url = `https://glacial-falls-86656.herokuapp.com/user/${id}`;
-      const addUsers = async () => {
+      const orderDelete = async () => {
         try {
           const res = await axios.delete(url, {
             headers: {
@@ -57,7 +57,7 @@ const AdminRow = ({ user: dbUser, refetch }) => {
             },
           });
           if (res.data.deletedCount > 0) {
-            console.log("delete done");
+            toast("Delete Order");
             refetch();
           }
         } catch (error) {
@@ -66,10 +66,10 @@ const AdminRow = ({ user: dbUser, refetch }) => {
             localStorage.removeItem("accessToken");
             navigate("/login");
           }
-          console.log(error.massage);
+          toast.error(error.massage);
         }
       };
-      addUsers();
+      orderDelete();
     }
     // ----------------------------------------
   };

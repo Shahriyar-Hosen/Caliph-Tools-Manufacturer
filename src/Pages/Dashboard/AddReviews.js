@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
+import { toast } from 'react-toastify';
 
 const AddReviews = () => {
   const [user, loading] = useAuthState(auth);
@@ -48,7 +49,7 @@ const AddReviews = () => {
           navigate("/login");
         }
         if (res.status === 200) {
-          console.log("Your review add successful. Thanks");
+          toast.success("Your review add successful. Thanks");
           navigate("/dashboard");
         }
       })
@@ -58,7 +59,7 @@ const AddReviews = () => {
           localStorage.removeItem("accessToken");
           navigate("/login");
         }
-        console.log(error.massage);
+        toast.error(error.massage);
       });
   };
   return (

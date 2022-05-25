@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
+import { toast } from "react-toastify";
 
 const MyProfile = () => {
   const [user, loading] = useAuthState(auth);
@@ -39,7 +40,6 @@ const MyProfile = () => {
     return <Loading></Loading>;
   }
 
-  // console.log(data);
   const { _id, name, img, phone, address, education } = data;
 
   const ProfileSubmit = (event) => {
@@ -58,14 +58,18 @@ const MyProfile = () => {
       img: photo,
     };
     axios
-      .put(`https://glacial-falls-86656.herokuapp.com/user/${_id}`, updateProfile, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
+      .put(
+        `https://glacial-falls-86656.herokuapp.com/user/${_id}`,
+        updateProfile,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
-          console.log("Your Profile Update successfully");
+          toast.success("Your Profile Update successfully");
           refetch();
         }
       })
@@ -75,7 +79,7 @@ const MyProfile = () => {
           localStorage.removeItem("accessToken");
           navigate("/login");
         }
-        console.log(error.massage);
+        toast.error(error.massage);
       });
   };
   return (

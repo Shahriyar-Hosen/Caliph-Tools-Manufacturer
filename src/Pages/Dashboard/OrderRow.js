@@ -3,10 +3,11 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
+import { toast } from "react-toastify";
 
 const OrderRow = ({ order, index, refetch }) => {
   const navigate = useNavigate();
-  
+
   const { _id, toolsName, orderQuantity, price, status, paid } = order;
 
   const deleteOrder = (id) => {
@@ -15,15 +16,15 @@ const OrderRow = ({ order, index, refetch }) => {
     if (proceed) {
       // Delete Method update using id
       const url = `https://glacial-falls-86656.herokuapp.com/orders/${id}`;
-      const addUsers = async () => {
+      const orderDelete = async () => {
         try {
-          const res = await axios.delete(url,{
+          const res = await axios.delete(url, {
             headers: {
               authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
           });
           if (res.data.deletedCount > 0) {
-            console.log("delete done");
+            toast("delete done");
             refetch();
           }
         } catch (error) {
@@ -32,10 +33,10 @@ const OrderRow = ({ order, index, refetch }) => {
             localStorage.removeItem("accessToken");
             navigate("/login");
           }
-          console.log(error.massage);
+          toast.error(error.massage);
         }
       };
-      addUsers();
+      orderDelete();
     }
     // ----------------------------------------
   };

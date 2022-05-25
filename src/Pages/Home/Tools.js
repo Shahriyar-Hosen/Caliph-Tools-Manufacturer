@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import useAdmin from "../../hooks/useAdmin";
 import ToolsCard from "./ToolsCard";
+import { toast } from "react-toastify";
 
 const Tools = () => {
   const [tools, setTools] = useState([]);
@@ -31,7 +32,7 @@ const Tools = () => {
           localStorage.removeItem("accessToken");
           navigate("/login");
         }
-        console.log(error.massage);
+        toast.error(error.massage);
       }
     };
     toolsDataLoad();

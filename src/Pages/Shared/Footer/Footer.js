@@ -179,26 +179,26 @@ const Footer03 = () => {
           </div>
           <div className="">
             <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">
-            Legal Notices
+              Legal Notices
             </h6>
             <p className="mb-4">
               <Link to="#!" className="text-gray-600">
-              Privacy 
+                Privacy
               </Link>
             </p>
             <p className="mb-4">
               <Link to="#!" className="text-gray-600">
-              NoticeSecurity 
+                NoticeSecurity
               </Link>
             </p>
             <p className="mb-4">
               <Link to="#!" className="text-gray-600">
-              PolicyCookie 
+                PolicyCookie
               </Link>
             </p>
             <p>
               <Link to="#!" className="text-gray-600">
-              PolicyTerms & Conditions
+                PolicyTerms & Conditions
               </Link>
             </p>
           </div>
@@ -282,11 +282,8 @@ const Footer03 = () => {
         </div>
       </div>
       <div className="text-center p-6 bg-[#d5f2ff]">
-        <span>	&copy; {new Date().getFullYear()} Copyright: </span>
-        <Link
-          className="text-gray-600 font-semibold"
-          to="/"
-        >
+        <span> &copy; {new Date().getFullYear()} Copyright: </span>
+        <Link className="text-gray-600 font-semibold" to="/">
           CALIPH TOOLS MANUFACTURER
         </Link>
       </div>
