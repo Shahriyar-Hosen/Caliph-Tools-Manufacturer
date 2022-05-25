@@ -18,6 +18,8 @@ import ManageOrders from "./Pages/Dashboard/ManageOrders";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
 import AddTools from "./Pages/Dashboard/AddTools";
 import ManageTools from "./Pages/Dashboard/ManageTools";
+import RequireAdmin from "./Pages/Authentication/RequireAdmin";
+import RequireNotAdmin from "./Pages/Authentication/RequireNotAdmin";
 
 function App() {
   return (
@@ -43,19 +45,21 @@ function App() {
             </RequireAuth>
           }
         >
-        <Route
-          index
-          element={
-            <RequireAuth>
-              <MyProfile />
-            </RequireAuth>
-          }
-        ></Route>
+          <Route
+            index
+            element={
+              <RequireAuth>
+                <MyProfile />
+              </RequireAuth>
+            }
+          ></Route>
           <Route
             path="myOrders"
             element={
               <RequireAuth>
-                <MyOrder />
+                <RequireNotAdmin>
+                  <MyOrder />
+                </RequireNotAdmin>
               </RequireAuth>
             }
           ></Route>
@@ -63,15 +67,19 @@ function App() {
             path="addReviews"
             element={
               <RequireAuth>
-                <AddReviews />
+                <RequireNotAdmin>
+                  <AddReviews />
+                </RequireNotAdmin>
               </RequireAuth>
             }
           ></Route>
           <Route
-            path="manage"
+            path="manageOrders"
             element={
               <RequireAuth>
-                <ManageOrders />
+                <RequireAdmin>
+                  <ManageOrders />
+                </RequireAdmin>
               </RequireAuth>
             }
           ></Route>
@@ -79,7 +87,9 @@ function App() {
             path="makeAdmin"
             element={
               <RequireAuth>
-                <MakeAdmin />
+                <RequireAdmin>
+                  <MakeAdmin />
+                </RequireAdmin>
               </RequireAuth>
             }
           ></Route>
@@ -87,7 +97,9 @@ function App() {
             path="addTools"
             element={
               <RequireAuth>
-                <AddTools />
+                <RequireAdmin>
+                  <AddTools />
+                </RequireAdmin>
               </RequireAuth>
             }
           ></Route>
@@ -95,7 +107,9 @@ function App() {
             path="manageTools"
             element={
               <RequireAuth>
-                <ManageTools />
+                <RequireAdmin>
+                  <ManageTools />
+                </RequireAdmin>
               </RequireAuth>
             }
           ></Route>

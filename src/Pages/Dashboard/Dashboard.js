@@ -7,7 +7,7 @@ import useAdmin from "../../hooks/useAdmin";
 const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
-  
+
   return (
     <section className="min-h-screen">
       <div className=" flex justify-center items-center my-5">
@@ -16,7 +16,7 @@ const Dashboard = () => {
           {admin ? (
             <>
               <li>
-                <Link to="/dashboard/manage">Manage All Orders</Link>
+                <Link to="/dashboard/manageOrders">Manage All Orders</Link>
               </li>
               <li>
                 <Link to="/dashboard/addTools">Add A Tools</Link>
