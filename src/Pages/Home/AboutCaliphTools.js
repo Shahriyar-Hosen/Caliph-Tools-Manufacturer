@@ -1,4 +1,5 @@
 import React from "react";
+import swal from "sweetalert";
 
 const AboutCaliphTools = () => {
   return (
@@ -31,7 +32,7 @@ const AboutCaliphTools = () => {
               reliable delivery.
             </p>
             <button className="btn bg-gradient-to-r from-accent  to-success border-0 text-white block mx-auto lg:mx-0">
-            Read More
+              Read More
             </button>
           </div>
         </div>
