@@ -4,6 +4,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import { toast } from "react-toastify";
+import swal from "sweetalert";
 
 const ManageOrderRow = ({ order, index, refetch }) => {
   const { _id, toolsName, orderQuantity, price, status, paid, email } = order;
@@ -48,32 +49,47 @@ const ManageOrderRow = ({ order, index, refetch }) => {
   };
 
   const deleteOrder = (id) => {
-    const proceed = window.confirm("Are you sure! Delete This orders");
-    if (proceed) {
-      // Delete Method update using id
-      const url = `https://glacial-falls-86656.herokuapp.com/orders/${id}`;
-      const orderDelete = async () => {
-        try {
-          const res = await axios.delete(url, {
-            headers: {
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-          });
-          if (res.data.deletedCount > 0) {
-            toast("Delete order");
-            refetch();
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this order!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        // Delete Method update using id
+        const url = `https://glacial-falls-86656.herokuapp.com/orders/${id}`;
+        const orderDelete = async () => {
+          try {
+            const res = await axios.delete(url, {
+              headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              },
+            });
+            if (res.data.deletedCount > 0) {
+              swal("Poof! This order has been deleted!", {
+                icon: "success",
+              });
+              toast("Delete order");
+              refetch();
+            }
+          } catch (error) {
+            if (
+              error.response.status === 401 ||
+              error.response.status === 403
+            ) {
+              signOut(auth);
+              localStorage.removeItem("accessToken");
+              navigate("/login");
+            }
+            toast.error(error.massage);
           }
-        } catch (error) {
-          if (error.response.status === 401 || error.response.status === 403) {
-            signOut(auth);
-            localStorage.removeItem("accessToken");
-            navigate("/login");
-          }
-          toast.error(error.massage);
-        }
-      };
-      orderDelete();
-    }
+        };
+        orderDelete();
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
     // ----------------------------------------
   };
   return (

@@ -1,5 +1,4 @@
 import React from "react";
-import swal from "sweetalert";
 
 const AboutCaliphTools = () => {
   return (

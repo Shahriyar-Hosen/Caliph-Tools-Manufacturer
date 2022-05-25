@@ -5,7 +5,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import swal from "sweetalert";
 
 const AdminRow = ({ user: dbUser, refetch }) => {
   const [user, loading] = useAuthState(auth);
@@ -44,36 +45,49 @@ const AdminRow = ({ user: dbUser, refetch }) => {
       });
   };
 
-  const deleteOrder = (id) => {
-    const proceed = window.confirm("Are you sure! Delete This orders");
-    if (proceed) {
-      // Delete Method update using id
-      const url = `https://glacial-falls-86656.herokuapp.com/user/${id}`;
-      const orderDelete = async () => {
-        try {
-          const res = await axios.delete(url, {
-            headers: {
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-          });
-          if (res.data.deletedCount > 0) {
-            toast("Delete Order");
-            refetch();
+  const deleteUser = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this user!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const url = `https://glacial-falls-86656.herokuapp.com/user/${id}`;
+        const userDelete = async () => {
+          try {
+            const res = await axios.delete(url, {
+              headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              },
+            });
+            if (res.data.deletedCount > 0) {
+              swal(" This user has been deleted!", {
+                icon: "success",
+              });
+              toast("Delete User");
+              refetch();
+            }
+          } catch (error) {
+            if (
+              error.response.status === 401 ||
+              error.response.status === 403
+            ) {
+              signOut(auth);
+              localStorage.removeItem("accessToken");
+              navigate("/login");
+            }
+            toast.error(error.massage);
           }
-        } catch (error) {
-          if (error.response.status === 401 || error.response.status === 403) {
-            signOut(auth);
-            localStorage.removeItem("accessToken");
-            navigate("/login");
-          }
-          toast.error(error.massage);
-        }
-      };
-      orderDelete();
-    }
-    // ----------------------------------------
-  };
+        };
+        userDelete();
+      } else {
+        swal("Your User file is safe!");
+      }
+    });
 
+  };
   if (loading) {
     return <Loading></Loading>;
   }
@@ -108,7 +122,7 @@ const AdminRow = ({ user: dbUser, refetch }) => {
       </td>
       <td>
         <button
-          onClick={() => deleteOrder(_id)}
+          onClick={() => deleteUser(_id)}
           className="btn btn-xs btn-warning hover:text-black bg-red-400 border-0 text-white"
         >
           Delete
