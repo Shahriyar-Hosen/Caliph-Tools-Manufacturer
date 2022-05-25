@@ -68,7 +68,7 @@ const CheckoutForm = ({ order }) => {
       setProcessing(false);
     } else {
       setCardError("");
-      
+
       // store payment on database
       const payment = {
         orderId: _id,
@@ -92,7 +92,7 @@ const CheckoutForm = ({ order }) => {
           setProcessing(false);
           console.log(data);
           if (data.acknowledged) {
-            // navigate("/dashboard");
+            navigate("/dashboard/myOrders");
             // toast.success("Congrats! Your payment is completed.");
             console.log("Congrats! Your payment is completed.");
           }
@@ -120,7 +120,7 @@ const CheckoutForm = ({ order }) => {
           }}
         />
         <button
-          className="btn btn-success btn-sm mt-5"
+          className="btn bg-gradient-to-r from-accent  to-success border-0 text-white btn-sm mt-5"
           type="submit"
           disabled={!stripe || !clientSecret}
         >
