@@ -21,6 +21,7 @@ import ManageTools from "./Pages/Dashboard/ManageTools";
 import RequireAdmin from "./Pages/Authentication/RequireAdmin";
 import RequireNotAdmin from "./Pages/Authentication/RequireNotAdmin";
 import Payment from "./Pages/Dashboard/Payment";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -131,6 +132,7 @@ function App() {
         <Route path="/signup" element={<Signup />}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer />
     </div>
   );
 }
