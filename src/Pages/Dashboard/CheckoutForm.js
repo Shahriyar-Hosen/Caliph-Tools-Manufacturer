@@ -15,7 +15,7 @@ const CheckoutForm = ({ order }) => {
   const { _id, price, email, userName } = order;
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://glacial-falls-86656.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-Type": "application/json",
@@ -80,7 +80,7 @@ const CheckoutForm = ({ order }) => {
         },
       };
 
-      fetch(`http://localhost:5000/orders/${_id}`, {
+      fetch(`https://glacial-falls-86656.herokuapp.com/orders/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
