@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import auth from "../../firebase.inite";
 import useAdmin from "../../hooks/useAdmin";
-import Loading from "../Shared/Loading";
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
-
-
-
+  
   return (
     <section className="min-h-screen">
       <div className=" flex justify-center items-center my-5">

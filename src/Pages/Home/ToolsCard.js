@@ -23,7 +23,7 @@ const ToolsCard = ({ tools, admin}) => {
           <p>Minimum order quantity: {minOrder}</p>
           <div className="card-actions justify-center mt-2">
             <Link
-              to={admin ?"dashboard":`/purchase${_id}`}
+              to={admin ?"/dashboard/manage":`/purchase${_id}`}
               className="btn bg-gradient-to-r from-accent  to-success border-0 text-white"
             >
               Buy Now

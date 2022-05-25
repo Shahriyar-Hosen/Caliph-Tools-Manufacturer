@@ -13,7 +13,7 @@ const Navbar = () => {
   }
 
   const logout = () => {
-    localStorage.removeItem("accessToken")
+    localStorage.removeItem("accessToken");
     signOut(auth);
   };
 
@@ -57,7 +57,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-[#fff7f2] rounded-lg">
+    <div className="navbar bg-[#ebf8fe] rounded-lg">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -87,7 +87,7 @@ const Navbar = () => {
 
         <Link
           to="/"
-          className="btn btn-ghost font-mono text-xl text-primary font-bold uppercase"
+          className="btn btn-ghost font-serif text-xl text-[navy] font-bold uppercase "
         >
           Caliph Tools
         </Link>
