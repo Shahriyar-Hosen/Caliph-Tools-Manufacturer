@@ -1,9 +1,8 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
-const CheckoutForm = ({ appointment }) => {
+const CheckoutForm = ({ order }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState("");
@@ -12,20 +11,17 @@ const CheckoutForm = ({ appointment }) => {
   // const [success, setSuccess] = useState(false);
   let navigate = useNavigate();
 
-  const { _id, price, patient, patientName } = appointment;
+  const { _id, price, email, userName } = order;
 
   useEffect(() => {
-    fetch(
-      "https://floating-fortress-02159.herokuapp.com/create-payment-intent",
-      {
-        method: "POST",
-        headers: {
-          "content-Type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify({ price }),
-      }
-    )
+    fetch("http://localhost:5000/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify({ price }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
@@ -61,8 +57,8 @@ const CheckoutForm = ({ appointment }) => {
         payment_method: {
           card: card,
           billing_details: {
-            name: patientName,
-            email: patient,
+            name: userName,
+            email: email,
           },
         },
       });
@@ -72,10 +68,10 @@ const CheckoutForm = ({ appointment }) => {
       setProcessing(false);
     } else {
       setCardError("");
-
+      
       // store payment on database
       const payment = {
-        appointment: _id,
+        orderId: _id,
         transactionId: paymentIntent.id,
         paymentMethod: {
           id: paymentMethod.id,
@@ -83,7 +79,7 @@ const CheckoutForm = ({ appointment }) => {
         },
       };
 
-      fetch(`https://floating-fortress-02159.herokuapp.com/booking/${_id}`, {
+      fetch(`http://localhost:5000/orders/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
@@ -94,9 +90,11 @@ const CheckoutForm = ({ appointment }) => {
         .then((res) => res.json())
         .then((data) => {
           setProcessing(false);
+          console.log(data);
           if (data.acknowledged) {
-            navigate("/dashboard");
-            toast.success("Congrats! Your payment is completed.");
+            // navigate("/dashboard");
+            // toast.success("Congrats! Your payment is completed.");
+            console.log("Congrats! Your payment is completed.");
           }
         });
     }
@@ -130,7 +128,9 @@ const CheckoutForm = ({ appointment }) => {
         </button>
       </form>
       {cardError && <p className="text-red-500">{cardError}</p>}
-      {processing && !cardError && <progress className="progress w-full"></progress>}
+      {processing && !cardError && (
+        <progress className="progress w-full"></progress>
+      )}
     </>
   );
 };

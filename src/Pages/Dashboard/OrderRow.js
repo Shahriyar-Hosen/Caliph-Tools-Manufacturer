@@ -53,7 +53,7 @@ const OrderRow = ({ order, index, refetch }) => {
           status
         ) : (
           <Link
-            to="/payment"
+            to={`/payment/${_id}`}
             className="btn btn-xs btn-info bg-green-500 border-0 text-white"
           >
             Pay

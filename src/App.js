@@ -20,6 +20,7 @@ import AddTools from "./Pages/Dashboard/AddTools";
 import ManageTools from "./Pages/Dashboard/ManageTools";
 import RequireAdmin from "./Pages/Authentication/RequireAdmin";
 import RequireNotAdmin from "./Pages/Authentication/RequireNotAdmin";
+import Payment from "./Pages/Dashboard/Payment";
 
 function App() {
   return (
@@ -114,6 +115,16 @@ function App() {
             }
           ></Route>
         </Route>
+        <Route
+          path="/payment/:id"
+          element={
+            <RequireAuth>
+              {/* <RequireNotAdmin> */}
+                <Payment></Payment>
+              {/* </RequireNotAdmin> */}
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/settings" element={<Settings />}></Route>
         <Route path="/login" element={<Login />}></Route>

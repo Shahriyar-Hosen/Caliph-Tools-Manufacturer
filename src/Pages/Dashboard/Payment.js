@@ -13,9 +13,9 @@ const stripePromise = loadStripe(
 const Payment = () => {
   const { id } = useParams();
 
-  const url = `https://floating-fortress-02159.herokuapp.com/booking/${id}`;
+  const url = `http://localhost:5000/orders/${id}`;
 
-  const { data: appointment, isLoading } = useQuery(["booking", id], () =>
+  const { data: order, isLoading } = useQuery(["orders", id], () =>
     fetch(url, {
       method: "GET",
       headers: {
@@ -27,27 +27,27 @@ const Payment = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-  const { date, patientName, treatment, slot, price } = appointment;
+//   const { name } = order;
+  console.log("order", order);
 
   return (
     <div className="card w-full lg:w-1/2 my-12 lg:mx-auto bg-base-100 shadow-xl">
       <div className="card w-full bg-base-100 shadow-lg mb-20">
         <div className="card-body">
-          <p className="text-success">Hello, {patientName}</p>
+          <p className="text-success">Hello, {"patientName"}</p>
           <h2 className="card-title text-2xl font-bold">
-            Please Pay for {treatment}
+            Please Pay for {"tools name"}
           </h2>
           <p>
-            Your Appointment: <span className="text-orange-700">{date}</span> at{" "}
-            {slot}{" "}
+            Your Order Date: <span className="text-orange-700">{"date"}</span>{" "}
           </p>
-          <p>Please Pay: ${price}</p>
+          <p>Please Pay: ${"price"}</p>
         </div>
       </div>
       <div className="card-body">
         <h2 className="card-title">Please provide card information!😊</h2>
         <Elements stripe={stripePromise}>
-          <CheckoutForm appointment={appointment} />
+          <CheckoutForm order={order} />
         </Elements>
       </div>
     </div>

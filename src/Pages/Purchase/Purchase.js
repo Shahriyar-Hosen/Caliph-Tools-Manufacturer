@@ -21,11 +21,14 @@ const Purchase = () => {
   useEffect(() => {
     const toolData = async () => {
       try {
-        const res = await axios.get(`https://glacial-falls-86656.herokuapp.com/tools/${id}`, {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        });
+        const res = await axios.get(
+          `https://glacial-falls-86656.herokuapp.com/tools/${id}`,
+          {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
         setTool(res.data);
         setOrderQuantity(res.data.minOrder);
         setTotalPrice(res.data.minOrder * res.data.price);
@@ -98,7 +101,6 @@ const Purchase = () => {
         }
       })
       .catch((error) => {
-        
         if (error.response.status === 401 || error.response.status === 403) {
           signOut(auth);
           localStorage.removeItem("accessToken");
@@ -215,7 +217,7 @@ const Purchase = () => {
                   max={quantity}
                   placeholder="Add Quantity"
                   className="input input-bordered"
-                  onBlur={(e) => setOrderQuantity(e.target.value)}
+                  onBlur={(e) => setOrderQuantity(Number(e.target.value))}
                   required
                 />
                 <label className="label">

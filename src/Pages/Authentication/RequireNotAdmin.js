@@ -15,7 +15,7 @@ const RequireNotAdmin = ({ children }) => {
   if (loading || adminLoading) {
     return <Loading></Loading>;
   }
-  if (user || admin) {
+  if (!user || admin) {
     localStorage.removeItem("accessToken");
     signOut(auth);
     return <Navigate to="/login" state={{ from: location }} replace />;
