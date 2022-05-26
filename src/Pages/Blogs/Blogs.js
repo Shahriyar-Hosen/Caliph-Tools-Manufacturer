@@ -3,11 +3,11 @@ import React from "react";
 const Blogs = () => {
   return (
     <div className="min-h-screen">
-      <h1 className="text-5xl font-bold font-serif text-primary pt-7 pb-5 text-center">
+      <h1 className="text-5xl font-bold font-serif text-primary py-8 text-center">
         My Blogs
       </h1>
-      <div className="gap-7 my-10 mx-5">
-        <div class="card w-full bg-sky-50 shadow-xl">
+      <div className="md:mx-5 lg:mx-10  mx-5">
+        <div class="card w-full bg-sky-50 shadow-xl mb-10">
           <div class="card-body">
             <h2 class="card-title">
               আপনি কিভাবে একটি রিয়েক্ট অ্যাপ্লিকেশনের পারফরম্যান্স ইম্প্রুভ
@@ -80,8 +80,51 @@ const Blogs = () => {
 
         <div class="card w-full bg-sky-50 shadow-xl">
           <div class="card-body">
-            <h2 class="card-title">Card title!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <h2 class="card-title">
+              একটি রিয়েক্ট অ্যাপ্লিকেশনে একটি স্টেট পরিচালনা করার বিভিন্ন উপায়
+              কি কি?
+            </h2>
+            <h2 class="card-title border-b-8 pb-2 border-double border-secondary">
+              What are the different ways to manage a state in a React
+              application?
+            </h2>
+            <p>
+              রিয়েক্ট অ্যাপ ম্যানেজ করার জন্য সাধারণত চার ধরনের স্টেট ব্যবহার
+              করা হয়:-
+            </p>
+            <ul>
+              <li className="font-bold">⭐Local state</li>
+              <li className="font-bold">⭐Global state</li>
+              <li className="font-bold">⭐Server state </li>
+              <li className="font-bold">⭐URL state</li>
+            </ul>
+            <br />
+            <h2 className="font-bold">⭐Local state</h2>
+            <p>
+              {" "}
+              যেখানে আমরা সাময়িকভাবে ডাটা সংরক্ষণ করি। এক্ষেত্রে বেশিরভাগ সময়
+              useState হুক ব্যবহার করা হয়।{" "}
+            </p>
+            <h2 className="font-bold">⭐Global state</h2>
+            <p>
+              {" "}
+              গ্লোবাল স্টেট হল আমরা ডেটা একাধিক কম্পনেন্টে থেকে ডাটা পেতে এবং
+              পরিচালনা করতে পারি। <br />
+              আমরা যখন আমাদের অ্যাপের যেকোনো জায়গায় বা একাধিক উপাদানে ডেটা
+              পেতে এবং আপডেট করতে চাই তখন গ্লোবাল স্টেট প্রয়োজনীয়।
+            </p>
+            <h2 className="font-bold">⭐Server state</h2>
+            <p>
+              {" "}
+              আউটসাইড থেকে কোন ডাটা লোড করতে ব্যবহার করা হয়। এক্ষেত্রে
+              useEffect ব্যবহার করা হয়।{" "}
+            </p>
+            <h2 className="font-bold">⭐URL state</h2>
+            <p>
+              {" "}
+              পাথনাম এবং কোয়েরি প্যারামিটার সহ ইউআরএল-এ থাকা ডেটা পেতে ব্যবহার
+              করা হয়। এক্ষেত্রে useParams ব্যবহার করা হয়|{" "}
+            </p>
           </div>
         </div>
       </div>
