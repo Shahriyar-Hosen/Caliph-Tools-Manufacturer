@@ -6,7 +6,7 @@ const Blogs = () => {
       <h1 className="text-5xl font-bold font-serif text-primary py-8 text-center">
         My Blogs
       </h1>
-      <div className="md:mx-5 lg:mx-10  mx-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mx-5">
         <div class="card w-full bg-sky-50 shadow-xl mb-10">
           <div class="card-body">
             <h2 class="card-title">
@@ -187,7 +187,6 @@ const Blogs = () => {
             </h2>
 
             <img
-              className="w-2/3 mx-auto"
               src="https://i.ibb.co/hckf0cH/Screenshot-2.png"
               alt=""
             />
