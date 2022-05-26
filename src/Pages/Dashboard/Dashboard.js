@@ -11,7 +11,7 @@ const Dashboard = () => {
   return (
     <section className="min-h-screen">
       <div className=" flex justify-center items-center my-5">
-        {/* menu-vertical lg: */}
+        
         <ul className="menu menu-vertical md:menu-horizontal bg-info bg-opacity-25 rounded-box text-secondary font-serif">
           {admin ? (
             <>
@@ -22,10 +22,10 @@ const Dashboard = () => {
                 <Link to="/dashboard/addTools">Add A Tools</Link>
               </li>
               <li>
-                <Link to="/dashboard/makeAdmin">Make Admin</Link>
+                <Link to="/dashboard/manageTools">Manage Tools</Link>
               </li>
               <li>
-                <Link to="/dashboard/manageTools">Manage Tools</Link>
+                <Link to="/dashboard/makeAdmin">Make Admin</Link>
               </li>
             </>
           ) : (

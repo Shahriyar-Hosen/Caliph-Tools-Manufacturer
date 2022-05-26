@@ -22,6 +22,7 @@ import RequireAdmin from "./Pages/Authentication/RequireAdmin";
 import RequireNotAdmin from "./Pages/Authentication/RequireNotAdmin";
 import Payment from "./Pages/Dashboard/Payment";
 import { ToastContainer } from 'react-toastify';
+import MyPortfolio from "./Pages/MyPortfolio/MyPortfolio";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/home" element={<Home />}></Route>
+        <Route path="/myPortfolio" element={<MyPortfolio />}></Route>
         <Route
           path="/purchase:id"
           element={
