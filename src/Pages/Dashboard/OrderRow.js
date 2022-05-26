@@ -13,7 +13,9 @@ const OrderRow = ({ order, index, refetch }) => {
     order;
 
   const showTdId = () => {
-    swal(`Your Transaction Id: ${transactionId}`, {
+    swal({
+      title: "Your Transaction Id",
+      text: ` ${transactionId}`,
       icon: "success",
     });
     refetch();

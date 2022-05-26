@@ -78,14 +78,14 @@ const Purchase = () => {
       address: address,
       toolsName: name,
       orderQuantity: inputQuantity,
-      quantity,
+      quantity: quantity,
       price: totalPrice,
       status: "Pending",
       paid: false,
     };
 
     axios
-      .post("https://glacial-falls-86656.herokuapp.com/orders", order, {
+      .post("https://glacial-falls-86656.herokuapp.com/payOrders", order, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
