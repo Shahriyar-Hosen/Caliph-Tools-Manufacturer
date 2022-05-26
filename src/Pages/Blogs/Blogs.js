@@ -127,6 +127,7 @@ const Blogs = () => {
             </p>
           </div>
         </div>
+
         <div class="card w-full bg-sky-50 shadow-xl mb-10">
           <div class="card-body">
             <h2 class="card-title">প্রোটোটাইপিকাল ইনহেরিট কিভাবে কাজ করে?</h2>
@@ -140,6 +141,35 @@ const Blogs = () => {
               এর উত্তরাধিকারী হতে পারে। সাধারণত, একটি ম্যাথ মেথডের এর
               [[প্রোটোটাইপ]] পেতে এবং সেট করার জন্য, আমরা অবজেক্ট ব্যবহার করি।
             </p>
+          </div>
+        </div>
+
+        <div class="card w-full bg-sky-50 shadow-xl mb-10">
+          <div class="card-body">
+            <h2 class="card-title">
+              React এ আপনি কেন সরাসরি স্টেট সেট করবেন না!
+            </h2>
+            <h2 class="card-title border-b-8 pb-2 border-double border-secondary">
+              Why you do not set the state directly in React. For example, if
+              you have const [products, setProducts] = useState([]). Why you do
+              not set products = [...] instead, you use the setProducts
+            </h2>
+            <p>
+              নিম্নলিখিত কারণগুলির কারণে কখনই সরাসরি স্টেট আপডেট করা উচিত নয়:
+            </p>
+            <ul>
+              <li className="mt-2">
+                আপনি যদি এটি সরাসরি আপডেট করেন, তাহলে setState() কে পরে কল করলে
+                আপনার করা আপডেটটি বদলে যেতে পারে।
+              </li>
+              <li className="my-2">
+                আপনি যখন সরাসরি স্টেট আপডেট করেন, তখন এটি এই স্টেটকে তখনই
+                পরিবর্তন করে না। পরিবর্তে, এটি একটি অপেক্ষা করা অবস্থার রেন্ডার
+                করে, এবং এই পদ্ধতিতে কল করার পরে এটি অ্যাক্সেস করা শুধুমাত্র
+                বর্তমান মান পাওয়া যায়।
+              </li>
+              <li>সকল কোম্পানির থেকে এটি ব্যবহার করা যাবে না। </li>
+            </ul>
           </div>
         </div>
       </div>
