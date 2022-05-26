@@ -93,7 +93,10 @@ const OrderRow = ({ order, index, refetch }) => {
             Delete
           </button>
         ) : (
-          <button className="btn btn-xs" onClick={() => showTdId()}>
+          <button
+            className="btn btn-xs btn-primary text-white"
+            onClick={() => showTdId()}
+          >
             Transaction Id
           </button>
         )}

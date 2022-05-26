@@ -222,6 +222,7 @@ const Purchase = () => {
                   name="quantity"
                   min={minOrder}
                   max={quantity}
+                  defaultValue={minOrder}
                   placeholder="Add Quantity"
                   className="input input-bordered"
                   onBlur={(e) => setOrderQuantity(Number(e.target.value))}
