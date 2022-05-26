@@ -9,7 +9,15 @@ import swal from "sweetalert";
 const OrderRow = ({ order, index, refetch }) => {
   const navigate = useNavigate();
 
-  const { _id, toolsName, orderQuantity, price, status, paid } = order;
+  const { _id, toolsName, orderQuantity, price, status, paid, transactionId } =
+    order;
+
+  const showTdId = () => {
+    swal(`Your Transaction Id: ${transactionId}`, {
+      icon: "success",
+    });
+    refetch();
+  };
 
   const deleteOrder = (id) => {
     swal({
@@ -85,7 +93,9 @@ const OrderRow = ({ order, index, refetch }) => {
             Delete
           </button>
         ) : (
-          <span>Transaction Id</span>
+          <button className="btn btn-xs" onClick={() => showTdId()}>
+            Transaction Id
+          </button>
         )}
       </td>
     </tr>

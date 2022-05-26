@@ -62,7 +62,7 @@ const MyOrder = () => {
               <th>quantity</th>
               <th>price</th>
               <th>status</th>
-              <th>info</th>
+              <th>orders info</th>
             </tr>
           </thead>
           <tbody>
