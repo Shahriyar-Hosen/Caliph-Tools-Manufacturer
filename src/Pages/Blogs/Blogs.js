@@ -172,6 +172,27 @@ const Blogs = () => {
             </ul>
           </div>
         </div>
+
+        <div class="card w-full bg-sky-50 shadow-xl mb-10">
+          <div class="card-body">
+            <h2 class="card-title">
+              পণ্য একটি অ্যারে থেকে. প্রতিটি পণ্যের একটি নাম, মূল্য, বিবরণ,
+              ইত্যাদি রয়েছে। নাম অনুসারে পণ্যগুলি খুঁজতে আপনি কীভাবে একটি
+              অনুসন্ধান বাস্তবায়ন করবেন?
+            </h2>
+            <h2 class="card-title border-b-8 pb-2 border-double border-secondary">
+              You have an array of products. Each product has a name, price,
+              description, etc. How will you implement a search to find products
+              by name?
+            </h2>
+
+            <img
+              className="w-2/3 mx-auto"
+              src="https://i.ibb.co/hckf0cH/Screenshot-2.png"
+              alt=""
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
