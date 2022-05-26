@@ -49,9 +49,11 @@ const ToolsUpdate = ({ refetch, update: id, setUpdate }) => {
 
   return (
     <div>
+     
       <input type="checkbox" id="tools-update" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
+        
           <h1 className="text-3xl font-bold text-center">Update Tools</h1>
           <label
             htmlFor="tools-update"

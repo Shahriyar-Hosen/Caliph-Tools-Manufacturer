@@ -5,11 +5,17 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
 import Loading from "../Shared/Loading";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 
 const AddReviews = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   if (loading) {
     return <Loading></Loading>;
@@ -21,10 +27,8 @@ const AddReviews = () => {
     today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
   // ==================
 
-  const reviewSubmit = (event) => {
-    event.preventDefault();
-    const reviewText = event.target.review.value;
-    const retting = Number(event.target.retting.value);
+  const onSubmit = (data) => {
+    const retting = Number(data.retting);
     const name = user?.displayName;
     const img = user?.photoURL;
 
@@ -32,7 +36,7 @@ const AddReviews = () => {
       name: name,
       img: img,
       retting: retting,
-      description: reviewText,
+      description: data.reviewText,
       date,
     };
 
@@ -69,7 +73,7 @@ const AddReviews = () => {
       </h1>
       <div className="hero pb-10 bg-yellow-50">
         <div className="card flex-shrink-0 w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl shadow-2xl bg-base-100">
-          <form onSubmit={reviewSubmit} className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <span className="text-center text-md font-bold text-secondary font-mono">
               Date: {date}
             </span>
@@ -82,14 +86,21 @@ const AddReviews = () => {
                 min="1"
                 max="5"
                 name="retting"
-                required
                 placeholder="Retting"
                 className="input input-bordered"
+                {...register("retting", {
+                  required: {
+                    value: true,
+                    message: "Give a rating between 1 and 5",
+                  },
+                })}
               />
               <label className="label">
-                <span className="label-text">
-                  Give a rating between 1 and 5
-                </span>
+                {errors.retting?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors?.retting?.message}
+                  </span>
+                )}
               </label>
             </div>
             <div className="form-control">
@@ -98,13 +109,20 @@ const AddReviews = () => {
               </label>
               <textarea
                 name="review"
-                required
                 className="textarea textarea-bordered h-24"
+                {...register("reviewText", {
+                  required: {
+                    value: true,
+                    message: "Please review within 300 words",
+                  },
+                })}
               ></textarea>
               <label className="label">
-                <span className="label-text">
-                  Please review within 300 words
-                </span>
+                {errors.reviewText?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors?.reviewText?.message}
+                  </span>
+                )}
               </label>
             </div>
             <div className="form-control ">
