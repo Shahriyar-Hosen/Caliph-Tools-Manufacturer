@@ -1,69 +1,41 @@
-# Getting Started with Create React App
+# Caliph Tools Manufacturer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project live site [Link](https://caliph-tools-manufacturer.web.app/).
 
-## Available Scripts
+## Project Details
 
-In the project directory, you can run:
+This is a tools manufacturer's website. Different clients can purchase orders from here & And can pay by card.
 
-### `npm start`
+## Home Page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The homepage has a banner first. Then there is talk about Khalifa Tools and then there are Khalifa Tools. From where all clients can order. This is followed by a business summary of Khalifa Tools. Then it is said why order from Khalifa Tools. Then there are customer reviews & lasts Footer
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Dashboard
 
-### `npm test`
+Two types of users will see two types of interfaces in the dashboard. First let's talk about the general user interface. A typical user will see: his profile, a list of everything he has ordered, and a review section for adding reviews. Now let's say about admin user, when admin user login, you can see: his profile, all orders, can be set, can manage tools and can make someone admin.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Blogs
 
-### `npm run build`
+Six questions are answered in the Blogs section. Below are the questions:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+1 How will you improve the performance of a React Application?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2 What are the different ways to manage a state in a React application?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3 How does prototypical inheritance work?
 
-### `npm run eject`
+4 Why you do not set the state directly in React. For example, if you have const [products, setProducts] = useState([]). Why you do not set products = [...] instead, you use the setProducts
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5 You have an array of products. Each product has a name, price, description, etc. How will you implement a search to find products by name?
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+6 What is a unit test? Why should write unit tests?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## My Portfolio
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+My own portfolio has been added in this section
 
 ### `npm run build` fails to minify
 

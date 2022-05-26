@@ -1,16 +1,12 @@
 import axios from "axios";
 import { signOut } from "firebase/auth";
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.inite";
-import Loading from "../Shared/Loading";
 import { toast } from "react-toastify";
 import swal from "sweetalert";
 
 const AdminRow = ({ user: dbUser, refetch }) => {
-  const [user, loading] = useAuthState(auth);
-  const { displayName } = user;
   const { _id, name, img, role, email: dbEmail } = dbUser;
   const navigate = useNavigate();
 
@@ -88,9 +84,6 @@ const AdminRow = ({ user: dbUser, refetch }) => {
     });
 
   };
-  if (loading) {
-    return <Loading></Loading>;
-  }
 
   return (
     <tr>
@@ -101,7 +94,7 @@ const AdminRow = ({ user: dbUser, refetch }) => {
           </div>
         </div>
       </th>
-      <td>{name || displayName ? name || displayName : "User Name"}</td>
+      <td>{name  ? name  : "User Name"}</td>
       <td>{dbEmail}</td>
       <td>{role ? "" : "User"}</td>
       <td className="text-warning font-bold">
