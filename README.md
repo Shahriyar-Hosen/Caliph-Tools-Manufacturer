@@ -37,6 +37,16 @@ Six questions are answered in the Blogs section. Below are the questions:
 
 My own portfolio has been added in this section
 
-### `npm run build` fails to minify
+## All the technologies used in this project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 1. axios: 0.27.2",
+- 2. daisyui: 2.15.0
+- 3. dotenv: 16.0.1
+- 4. firebase: 9.8.1
+- 5. react-firebase-hooks: 5.0.3
+- 6. react-hook-form: 7.31.2
+- 7. react-query: "3.39.0
+- 8. react-router-dom: 6.3.0
+- 9. react-toastify: 9.0.1
+- 10. sweetalert: 2.1.2
+- 11. tw-elements: 1.0.0-alpha12
