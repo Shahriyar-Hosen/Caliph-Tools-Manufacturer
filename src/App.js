@@ -23,6 +23,7 @@ import RequireNotAdmin from "./Pages/Authentication/RequireNotAdmin";
 import Payment from "./Pages/Dashboard/Payment";
 import { ToastContainer } from "react-toastify";
 import MyPortfolio from "./Pages/MyPortfolio/MyPortfolio";
+import NotFound from "./Pages/Shared/NotFound";
 
 function App() {
   return (
@@ -132,6 +133,7 @@ function App() {
         <Route path="/settings" element={<Settings />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
       <Footer></Footer>
       <ToastContainer />
