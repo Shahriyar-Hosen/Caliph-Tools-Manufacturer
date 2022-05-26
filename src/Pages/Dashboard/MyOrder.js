@@ -21,7 +21,7 @@ const MyOrder = () => {
     refetch,
   } = useQuery("myOrders", () =>
     axios
-      .get(`https://glacial-falls-86656.herokuapp.com/orders/${email}`, {
+      .get(`https://glacial-falls-86656.herokuapp.com/order/${email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
