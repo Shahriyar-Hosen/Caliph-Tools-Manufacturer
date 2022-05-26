@@ -78,7 +78,7 @@ const Blogs = () => {
           </div>
         </div>
 
-        <div class="card w-full bg-sky-50 shadow-xl">
+        <div class="card w-full bg-sky-50 shadow-xl mb-10">
           <div class="card-body">
             <h2 class="card-title">
               একটি রিয়েক্ট অ্যাপ্লিকেশনে একটি স্টেট পরিচালনা করার বিভিন্ন উপায়
@@ -124,6 +124,21 @@ const Blogs = () => {
               {" "}
               পাথনাম এবং কোয়েরি প্যারামিটার সহ ইউআরএল-এ থাকা ডেটা পেতে ব্যবহার
               করা হয়। এক্ষেত্রে useParams ব্যবহার করা হয়|{" "}
+            </p>
+          </div>
+        </div>
+        <div class="card w-full bg-sky-50 shadow-xl mb-10">
+          <div class="card-body">
+            <h2 class="card-title">প্রোটোটাইপিকাল ইনহেরিট কিভাবে কাজ করে?</h2>
+            <h2 class="card-title border-b-8 pb-2 border-double border-secondary">
+              How does prototypical inheritance work?
+            </h2>
+            <p>
+              প্রোটোটাইপ্যাল ইনহেরিট্যান্স হল জাভাস্ক্রিপ্টের একটি বৈশিষ্ট্য যা
+              অবজেক্ট মেথড এড এবং বৈশিষ্ট্য যোগ করতে ব্যবহার করা হয়। এটি এমন
+              একটি মেথড যার মাধ্যমে একটি অবজেক্ট অন্য মেথড এর বৈশিষ্ট্য এবং মেথড
+              এর উত্তরাধিকারী হতে পারে। সাধারণত, একটি ম্যাথ মেথডের এর
+              [[প্রোটোটাইপ]] পেতে এবং সেট করার জন্য, আমরা অবজেক্ট ব্যবহার করি।
             </p>
           </div>
         </div>
