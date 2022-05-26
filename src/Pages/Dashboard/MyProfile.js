@@ -49,6 +49,7 @@ const MyProfile = () => {
     const address = event.target.address.value;
     const education = event.target.education.value;
     const photo = event.target.photo.value;
+    const github = event.target.github.value;
 
     const updateProfile = {
       name: name,
@@ -56,6 +57,7 @@ const MyProfile = () => {
       address: address,
       education: education,
       img: photo,
+      github: github,
     };
     axios
       .put(
@@ -240,6 +242,25 @@ const MyProfile = () => {
                 type="text"
                 name="photo"
                 placeholder="Update Your Picture"
+                className="input w-full"
+              />
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">
+                  <div className="indicator">
+                    <span className="indicator-item badge badge-info bg-opacity-20 border-0 text-secondary">
+                      link
+                    </span>
+                    <span>Add Your Github Profile Link </span>
+                  </div>
+                </span>
+              </label>
+              <input
+                type="text"
+                name="github"
+                placeholder="Add Your Github Link"
                 className="input w-full"
               />
             </div>
