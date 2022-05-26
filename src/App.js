@@ -21,7 +21,7 @@ import ManageTools from "./Pages/Dashboard/ManageTools";
 import RequireAdmin from "./Pages/Authentication/RequireAdmin";
 import RequireNotAdmin from "./Pages/Authentication/RequireNotAdmin";
 import Payment from "./Pages/Dashboard/Payment";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 import MyPortfolio from "./Pages/MyPortfolio/MyPortfolio";
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/myPortfolio" element={<MyPortfolio />}></Route>
+        <Route path="/blogs" element={<Blogs />}></Route>
         <Route
           path="/purchase:id"
           element={
@@ -40,7 +41,6 @@ function App() {
             </RequireAuth>
           }
         ></Route>
-        <Route path="/blogs" element={<Blogs />}></Route>
         <Route
           path="/dashboard"
           element={
@@ -122,9 +122,9 @@ function App() {
           path="/payment/:id"
           element={
             <RequireAuth>
-              {/* <RequireNotAdmin> */}
+              <RequireNotAdmin>
                 <Payment></Payment>
-              {/* </RequireNotAdmin> */}
+              </RequireNotAdmin>
             </RequireAuth>
           }
         ></Route>
