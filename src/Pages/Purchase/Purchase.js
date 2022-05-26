@@ -78,6 +78,7 @@ const Purchase = () => {
       address: address,
       toolsName: name,
       orderQuantity: inputQuantity,
+      quantity,
       price: totalPrice,
       status: "Pending",
       paid: false,

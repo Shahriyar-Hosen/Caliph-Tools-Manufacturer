@@ -18,28 +18,26 @@ const ToolsCard = ({ tools, admin }) => {
               ? description.slice(0, 100) + "..."
               : description}
           </p>
-          <div className="flex justify-evenly border-2 p-2 border-green-300 rounded-xl font-serif">
-            <div>
+          <div className=" border-2 p-2 border-green-300 rounded-xl font-serif">
+            <div className="flex justify-evenly">
               <div>
                 <p className="text-green-700 font-bold border-b border-success  text-lg  mb-1">
                   Price
                 </p>{" "}
-                <p className="font-sans text-center"> ${price}</p>
+                <p className="font-sans text-center  font-bold  text-error"> ${price}</p>
+              </div>
+              <div>
+                <p className="text-green-700 font-bold border-b border-success text-center  text-lg mb-1">
+                  Quantity
+                </p>
+                <p className="font">
+                  Available: <span className="font-sans font-bold  text-error">{quantity}</span>
+                </p>
               </div>
             </div>
-            <div>
-              <p className="text-green-700 font-bold border-b border-success text-center  text-lg mb-1">
-                Quantity
-              </p>
-              <p className="font">
-                Available:{" "}
-                <span className="font-sans">{quantity}</span>
-              </p>
-              <p>
-                Minimum:{" "}
-                <span className="font-sans">{minOrder}</span>
-              </p>
-            </div>
+            <p className="text-center mt-2">
+              Minimum Order: <span className="font-sans font-bold text-error">{minOrder}</span>
+            </p>
           </div>
           <div className="card-actions justify-center mt-2">
             <Link

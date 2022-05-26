@@ -10,7 +10,7 @@ const ManageToolsRow = ({ tool, index, refetch, setUpdate }) => {
   const navigate = useNavigate();
 
   const { _id, name, price, quantity } = tool;
-
+  
   const deleteTools = (id) => {
     swal({
       title: "Are you sure?",
