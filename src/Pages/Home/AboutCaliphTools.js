@@ -16,7 +16,7 @@ const AboutCaliphTools = () => {
           />
           <div className="lg:mr-14">
             <h2 className="font-bold text-accent">
-              Caliph Tools Manufacturer, LTD.
+              Caliph Tools Manufacturer, L.T.D.
             </h2>
             <h1 className="text-2xl font-bold text-secondary">
               A professional manufacturer and supplier of Hand Tools & Hardware
