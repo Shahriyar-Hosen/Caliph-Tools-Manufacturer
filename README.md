@@ -4,7 +4,7 @@ This project live site [Link](https://caliph-tools-manufacturer.web.app/).
 
 ## Project Details
 
-This is a tools manufacturer's website. Different clients can purchase orders from here & And can pay by card.
+This is a tools manufacturer's website. Different clients can order from here & And can pay by card.
 
 ## Home Page
 
