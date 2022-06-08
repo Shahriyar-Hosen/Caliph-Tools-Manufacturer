@@ -21,6 +21,15 @@ const auth = getAuth(app);
 export default auth;
 
 /* 
+apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
+*/
+
+/* 
 apiKey: "AIzaSyDi2XxQGsqwKH9U53ihhDViRGwW4CNUxI8",
   authDomain: "caliph-tools-manufacturer.firebaseapp.com",
   projectId: "caliph-tools-manufacturer",

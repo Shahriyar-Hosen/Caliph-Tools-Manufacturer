@@ -3,7 +3,7 @@ import React from "react";
 const MyPortfolio = () => {
   return (
     <section className="min-h-screen flex justify-center items-center bg-yellow-50">
-      <div class="card card-side bg-base-100 shadow-xl my-10 grid grid-cols-1 lg:grid-cols-2  font-sans mx-5 text-lg text-black py-20">
+      <div className="card card-side bg-base-100 shadow-xl my-10 grid grid-cols-1 lg:grid-cols-2  font-sans mx-5 text-lg text-black py-20">
         <figure>
           <img
             className="w-96"
@@ -11,8 +11,8 @@ const MyPortfolio = () => {
             alt="Movie"
           />
         </figure>
-        <div class="mx-10 flex flex-col gap-2">
-          <h2 class="text-3xl font-bold text-center lg:text-left text-secondary my-5">
+        <div className="mx-10 flex flex-col gap-2">
+          <h2 className="text-3xl font-bold text-center lg:text-left text-secondary my-5">
             Name: Shahriyar Hosen
           </h2>
           <p>
@@ -36,7 +36,7 @@ const MyPortfolio = () => {
             HTML _ CSS _ Tailwind _ Bootstrap _ Javascript _ React _ Firebase _
             Node _ MongoDB _ Atlas _ Axios _ React Query _ daisyUI
           </p>
-          <div class=" my-10">
+          <div className=" my-10">
             <h1 className="font-bold text-xl text-center mb-2  text-secondary">
               My Project
             </h1>

@@ -7,13 +7,13 @@ const Blogs = () => {
         My Blogs
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mx-5">
-        <div class="card w-full bg-sky-50 shadow-xl mb-10">
-          <div class="card-body">
-            <h2 class="card-title">
+        <div className="card w-full bg-sky-50 shadow-xl mb-10">
+          <div className="card-body">
+            <h2 className="card-title">
               আপনি কিভাবে একটি রিয়েক্ট অ্যাপ্লিকেশনের পারফরম্যান্স ইম্প্রুভ
               করবেন?
             </h2>
-            <h2 class="card-title border-b-8 pb-2 border-double border-secondary">
+            <h2 className="card-title border-b-8 pb-2 border-double border-secondary">
               How will you improve the performance of a React Application?
             </h2>
             <p>
@@ -78,13 +78,13 @@ const Blogs = () => {
           </div>
         </div>
 
-        <div class="card w-full bg-sky-50 shadow-xl mb-10">
-          <div class="card-body">
-            <h2 class="card-title">
+        <div className="card w-full bg-sky-50 shadow-xl mb-10">
+          <div className="card-body">
+            <h2 className="card-title">
               একটি রিয়েক্ট অ্যাপ্লিকেশনে একটি স্টেট পরিচালনা করার বিভিন্ন উপায়
               কি কি?
             </h2>
-            <h2 class="card-title border-b-8 pb-2 border-double border-secondary">
+            <h2 className="card-title border-b-8 pb-2 border-double border-secondary">
               What are the different ways to manage a state in a React
               application?
             </h2>
@@ -128,10 +128,12 @@ const Blogs = () => {
           </div>
         </div>
 
-        <div class="card w-full bg-sky-50 shadow-xl mb-10">
-          <div class="card-body">
-            <h2 class="card-title">প্রোটোটাইপিকাল ইনহেরিট কিভাবে কাজ করে?</h2>
-            <h2 class="card-title border-b-8 pb-2 border-double border-secondary">
+        <div className="card w-full bg-sky-50 shadow-xl mb-10">
+          <div className="card-body">
+            <h2 className="card-title">
+              প্রোটোটাইপিকাল ইনহেরিট কিভাবে কাজ করে?
+            </h2>
+            <h2 className="card-title border-b-8 pb-2 border-double border-secondary">
               How does prototypical inheritance work?
             </h2>
             <p>
@@ -144,12 +146,12 @@ const Blogs = () => {
           </div>
         </div>
 
-        <div class="card w-full bg-sky-50 shadow-xl mb-10">
-          <div class="card-body">
-            <h2 class="card-title">
+        <div className="card w-full bg-sky-50 shadow-xl mb-10">
+          <div className="card-body">
+            <h2 className="card-title">
               React এ আপনি কেন সরাসরি স্টেট সেট করবেন না!
             </h2>
-            <h2 class="card-title border-b-8 pb-2 border-double border-secondary">
+            <h2 className="card-title border-b-8 pb-2 border-double border-secondary">
               Why you do not set the state directly in React. For example, if
               you have const [products, setProducts] = useState([]). Why you do
               not set products = [...] instead, you use the setProducts
@@ -173,32 +175,29 @@ const Blogs = () => {
           </div>
         </div>
 
-        <div class="card w-full bg-sky-50 shadow-xl mb-10">
-          <div class="card-body">
-            <h2 class="card-title">
+        <div className="card w-full bg-sky-50 shadow-xl mb-10">
+          <div className="card-body">
+            <h2 className="card-title">
               পণ্য একটি অ্যারে থেকে. প্রতিটি পণ্যের একটি নাম, মূল্য, বিবরণ,
               ইত্যাদি রয়েছে। নাম অনুসারে পণ্যগুলি খুঁজতে আপনি কীভাবে একটি
               অনুসন্ধান বাস্তবায়ন করবেন?
             </h2>
-            <h2 class="card-title border-b-8 pb-2 border-double border-secondary">
+            <h2 className="card-title border-b-8 pb-2 border-double border-secondary">
               You have an array of products. Each product has a name, price,
               description, etc. How will you implement a search to find products
               by name?
             </h2>
 
-            <img
-              src="https://i.ibb.co/hckf0cH/Screenshot-2.png"
-              alt=""
-            />
+            <img src="https://i.ibb.co/hckf0cH/Screenshot-2.png" alt="" />
           </div>
         </div>
 
-        <div class="card w-full bg-sky-50 shadow-xl mb-10">
-          <div class="card-body">
-            <h2 class="card-title">
+        <div className="card w-full bg-sky-50 shadow-xl mb-10">
+          <div className="card-body">
+            <h2 className="card-title">
               একটি ইউনিট পরীক্ষা কি? কেন ইউনিট পরীক্ষা লিখতে হবে?
             </h2>
-            <h2 class="card-title border-b-8 pb-2 border-double border-secondary">
+            <h2 className="card-title border-b-8 pb-2 border-double border-secondary">
               What is a unit test? Why should write unit tests?
             </h2>
             <p>
